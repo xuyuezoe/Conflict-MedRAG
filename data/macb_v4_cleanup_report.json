@@ -1,0 +1,4171 @@
+{
+  "summary": {
+    "input_file": "data/macb_treatment_v3.jsonl",
+    "output_file": "data/macb_treatment_v4.jsonl",
+    "total_samples": 231,
+    "total_changes": 424,
+    "changes_by_group": {
+      "B": 20,
+      "C": 28,
+      "D": 16,
+      "E": 20,
+      "F": 8,
+      "A": 332
+    }
+  },
+  "changes": [
+    {
+      "sample_id": "MACB-003",
+      "group": "B:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_ABSOLUTE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-015",
+      "group": "B:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_ABSOLUTE",
+      "new": "SC_RELATIVE"
+    },
+    {
+      "sample_id": "MACB-018",
+      "group": "B:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_ABSOLUTE",
+      "new": "SC_RELATIVE"
+    },
+    {
+      "sample_id": "MACB-023",
+      "group": "B:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_ABSOLUTE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-025",
+      "group": "B:status_fix",
+      "field": "gold_per_action_status.E",
+      "old": "ADMISSIBLE",
+      "new": "INADMISSIBLE_ABS"
+    },
+    {
+      "sample_id": "MACB-038",
+      "group": "B:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_ABSOLUTE",
+      "new": "SC_RELATIVE"
+    },
+    {
+      "sample_id": "MACB-040",
+      "group": "B:status_fix",
+      "field": "gold_per_action_status.A",
+      "old": "ADMISSIBLE",
+      "new": "INADMISSIBLE_ABS"
+    },
+    {
+      "sample_id": "MACB-040",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "\"treatment guidelines for acute chest pain in cocaine users contraindicated medications beta blockers\"",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-044",
+      "group": "B:status_fix",
+      "field": "gold_per_action_status.C",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "INADMISSIBLE_ABS"
+    },
+    {
+      "sample_id": "MACB-045",
+      "group": "B:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_ABSOLUTE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-050",
+      "group": "B:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_ABSOLUTE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-055",
+      "group": "B:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_ABSOLUTE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-059",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "What are the contraindications or dose adjustments for antiepileptic drugs in a 32‑week pregnant patient with a seizure disorder, allergies to penicillin, IV contrast, and soy, mild anemia, and hypertension?",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-060",
+      "group": "B:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_ABSOLUTE",
+      "new": "SC_RELATIVE"
+    },
+    {
+      "sample_id": "MACB-061",
+      "group": "B:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_ABSOLUTE",
+      "new": "SC_RELATIVE"
+    },
+    {
+      "sample_id": "MACB-063",
+      "group": "B:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_ABSOLUTE",
+      "new": "SC_RELATIVE"
+    },
+    {
+      "sample_id": "MACB-068",
+      "group": "B:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_ABSOLUTE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-068",
+      "group": "B:status_clean",
+      "field": "gold_per_action_status.A",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-068",
+      "group": "B:status_clean",
+      "field": "gold_per_action_status.B",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-068",
+      "group": "B:status_clean",
+      "field": "gold_per_action_status.C",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-068",
+      "group": "B:status_clean",
+      "field": "gold_per_action_status.E",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-077",
+      "group": "C:upgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-081",
+      "group": "C:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-082",
+      "group": "C:upgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-085",
+      "group": "C:upgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-086",
+      "group": "C:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-089",
+      "group": "C:upgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-090",
+      "group": "C:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-091",
+      "group": "C:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-093",
+      "group": "C:upgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-096",
+      "group": "C:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-100",
+      "group": "C:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-101",
+      "group": "C:upgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-103",
+      "group": "C:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-104",
+      "group": "C:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-106",
+      "group": "C:upgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-109",
+      "group": "C:upgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-116",
+      "group": "C:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-117",
+      "group": "C:upgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-122",
+      "group": "C:upgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-122",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "Find drug contraindications or dosing adjustments for medications in a 4‑year‑old child with hypoalbuminemia and edema.",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-123",
+      "group": "C:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-127",
+      "group": "C:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-133",
+      "group": "C:upgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-134",
+      "group": "C:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-134",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "What are the drug contraindications or dosing adjustments for patients with diabetes mellitus?",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-138",
+      "group": "C:upgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-141",
+      "group": "C:upgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-143",
+      "group": "C:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-147",
+      "group": "C:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-157",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "What are the drug contraindications and dosing adjustments for patients with moderate renal impairment (eGFR approximately 30 mL/min)?",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-158",
+      "group": "C:downgrade",
+      "field": "gold_conflict_type",
+      "old": "SC_RELATIVE",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-160",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "Drug contraindications or dosing in patients with heavy alcohol use",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-162",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "What are the dosing recommendations and contraindications for glucagon in patients with beta‑blocker or calcium‑channel blocker poisoning?",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-167",
+      "group": "F:fc_downgrade",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-167",
+      "group": "F:status_clean",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-167",
+      "group": "F:status_clean",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-167",
+      "group": "F:status_clean",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-175",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "What are the dosing adjustments and contraindications for medications in patients with ascites?",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-176",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "Find drug contraindications or dosing guidelines for patients with shellfish (seafood) allergy.",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-181",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "risedronate contraindications and dosing in elderly patients with osteoporosis",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-182",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "What is the recommended dose and contraindications for acyclovir in immunocompromised patients?",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-184",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "Drug contraindications or dosing recommendations for patients with severe arachnophobia.",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-185",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "What are the drug contraindications or dosing recommendations for anticoagulant therapy in patients with no recent surgery or bleeding history?",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-185",
+      "group": "F:fc_downgrade",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-189",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "Which anticoagulants are contraindicated in patients with heparin-induced thrombocytopenia (HIT)?",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-190",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "drug contraindications or dosing in patients with hypomagnesaemia (low magnesium) requiring QT-prolonging antibiotics for Mycoplasma pneumoniae infection",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-193",
+      "group": "F:fc_downgrade",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-193",
+      "group": "F:status_clean",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-193",
+      "group": "F:status_clean",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-202",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "What are the contraindications and dosing adjustments for epinephrine or alternative vasopressors in elderly patients with pulseless cardiac arrest and severe hypotension (BP 50/20 mmHg)?",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-207",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "Query: Drug dosing and contraindications for immunosuppressed pediatric patients post-kidney transplant",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-208",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "What is the dosing adjustment for fluconazole in patients with renal impairment?",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-212",
+      "group": "D:conflict_type",
+      "field": "gold_conflict_type",
+      "old": "NO_CONFLICT",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-212",
+      "group": "D:status",
+      "field": "gold_per_action_status.A",
+      "old": "NOT_INDICATED",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-212",
+      "group": "D:status",
+      "field": "gold_per_action_status.D",
+      "old": "NOT_INDICATED",
+      "new": "INADMISSIBLE_ABS"
+    },
+    {
+      "sample_id": "MACB-212",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "Which drugs are contraindicated in patients with poorly controlled asthma due to risk of bronchospasm, and what is the mechanism?",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-215",
+      "group": "E:scsr_clear",
+      "field": "gold_scsr_query",
+      "old": "What are the drug contraindications or dosing adjustments for patients with a history of gout?",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-221",
+      "group": "D:conflict_type",
+      "field": "gold_conflict_type",
+      "old": "NO_CONFLICT",
+      "new": "SC_RELATIVE"
+    },
+    {
+      "sample_id": "MACB-221",
+      "group": "D:status",
+      "field": "gold_per_action_status.E",
+      "old": "NOT_INDICATED",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-223",
+      "group": "D:conflict_type",
+      "field": "gold_conflict_type",
+      "old": "NO_CONFLICT",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-223",
+      "group": "D:status",
+      "field": "gold_per_action_status.C",
+      "old": "NOT_INDICATED",
+      "new": "INADMISSIBLE_ABS"
+    },
+    {
+      "sample_id": "MACB-229",
+      "group": "D:conflict_type",
+      "field": "gold_conflict_type",
+      "old": "NO_CONFLICT",
+      "new": "SC_RELATIVE"
+    },
+    {
+      "sample_id": "MACB-229",
+      "group": "D:status",
+      "field": "gold_per_action_status.D",
+      "old": "NOT_INDICATED",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-231",
+      "group": "B:status_fix",
+      "field": "gold_per_action_status.C",
+      "old": "NOT_INDICATED",
+      "new": "INADMISSIBLE_ABS"
+    },
+    {
+      "sample_id": "MACB-235",
+      "group": "D:conflict_type",
+      "field": "gold_conflict_type",
+      "old": "NO_CONFLICT",
+      "new": "SC_RELATIVE"
+    },
+    {
+      "sample_id": "MACB-235",
+      "group": "D:status",
+      "field": "gold_per_action_status.B",
+      "old": "NOT_INDICATED",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-236",
+      "group": "D:conflict_type",
+      "field": "gold_conflict_type",
+      "old": "NO_CONFLICT",
+      "new": "SC_RELATIVE"
+    },
+    {
+      "sample_id": "MACB-236",
+      "group": "D:status",
+      "field": "gold_per_action_status.B",
+      "old": "NOT_INDICATED",
+      "new": "INADMISSIBLE_ABS"
+    },
+    {
+      "sample_id": "MACB-236",
+      "group": "D:status",
+      "field": "gold_per_action_status.C",
+      "old": "NOT_INDICATED",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-236",
+      "group": "D:status",
+      "field": "gold_per_action_status.D",
+      "old": "NOT_INDICATED",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-236",
+      "group": "D:status",
+      "field": "gold_per_action_status.E",
+      "old": "NOT_INDICATED",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-001",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-003",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-004",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-005",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-006",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-007",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A",
+        "B",
+        "E"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-007",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "B",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-008",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "E"
+      ],
+      "new": [
+        "C",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-008",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-009",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-009",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-010",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-010",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-011",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-012",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "E"
+      ],
+      "new": [
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-012",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-013",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-014",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-015",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "E"
+      ],
+      "new": [
+        "A",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-015",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-017",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "D"
+      ],
+      "new": [
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-017",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-018",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B",
+        "D"
+      ],
+      "new": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-018",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-019",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-019",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-020",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A",
+        "B"
+      ],
+      "new": [
+        "A",
+        "B",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-020",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-021",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "E"
+      ],
+      "new": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-021",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-022",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C",
+        "D"
+      ],
+      "new": [
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-022",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-023",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-024",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-024",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-025",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A",
+        "D",
+        "E"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-025",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-026",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-027",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "E"
+      ],
+      "new": [
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-027",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-028",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "A",
+        "B",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-028",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-029",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "A",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-029",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-030",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-031",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-032",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B",
+        "D",
+        "E"
+      ],
+      "new": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-032",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-033",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "B",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-033",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-034",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "E"
+      ],
+      "new": [
+        "A",
+        "B",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-034",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-035",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "D"
+      ],
+      "new": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-035",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-036",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "D"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-036",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-037",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-038",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "D"
+      ],
+      "new": [
+        "B",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-038",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-039",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "B",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-039",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-040",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B",
+        "C",
+        "D",
+        "E",
+        "A"
+      ],
+      "new": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-040",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-041",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "D"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-041",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-042",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-042",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-043",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "A",
+        "B",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-043",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-044",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-045",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-046",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-047",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-048",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "D"
+      ],
+      "new": [
+        "A",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-048",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-049",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "E"
+      ],
+      "new": [
+        "A",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-049",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-050",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-051",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "B",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-051",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-052",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-053",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-053",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-054",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-054",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-055",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-056",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "E"
+      ],
+      "new": [
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-056",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-057",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-057",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-058",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-059",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "E"
+      ],
+      "new": [
+        "A",
+        "B",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-059",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-060",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "E"
+      ],
+      "new": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-060",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-061",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-061",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-062",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-062",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-063",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "D"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-063",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-064",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "B",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-064",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-065",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-066",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-067",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-068",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-069",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C",
+        "D"
+      ],
+      "new": [
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-069",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-070",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-071",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-072",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-072",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-073",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-073",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-074",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "D"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-074",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-075",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-075",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-076",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-076",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-077",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-079",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-079",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-080",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "E"
+      ],
+      "new": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-080",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-081",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-082",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-084",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "E"
+      ],
+      "new": [
+        "B",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-084",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-085",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-086",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-087",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-087",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-088",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-088",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-089",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-090",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-091",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-093",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-094",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-094",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-095",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-095",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-096",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-097",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A",
+        "B",
+        "D"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-097",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "B",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-098",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-098",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-099",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-099",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-100",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-101",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-102",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A",
+        "D"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-102",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-103",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-104",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-105",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "B",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-105",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-106",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-107",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-107",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-108",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-108",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-109",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-110",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-110",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-111",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-111",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-112",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "D"
+      ],
+      "new": [
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-112",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-113",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "D"
+      ],
+      "new": [
+        "A",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-113",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-114",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-114",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-115",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A",
+        "C"
+      ],
+      "new": [
+        "A",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-115",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-116",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-117",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-119",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "D"
+      ],
+      "new": [
+        "A",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-119",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-120",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "E"
+      ],
+      "new": [
+        "B",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-120",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-121",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-121",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-122",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-123",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-124",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B",
+        "D"
+      ],
+      "new": [
+        "A",
+        "B",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-124",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-125",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-125",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-126",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-126",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-127",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-128",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "E"
+      ],
+      "new": [
+        "B",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-128",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-129",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-129",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-130",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-130",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-131",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-131",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-132",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-132",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-133",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-134",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-135",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-135",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-136",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "D"
+      ],
+      "new": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-136",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-137",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-137",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-138",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-139",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "C",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-139",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-140",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "D"
+      ],
+      "new": [
+        "A",
+        "B",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-140",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-141",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-142",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "D"
+      ],
+      "new": [
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-142",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-143",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-145",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-145",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-146",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A",
+        "D",
+        "E"
+      ],
+      "new": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-146",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-147",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-148",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-148",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-149",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-149",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-150",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B",
+        "D"
+      ],
+      "new": [
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-150",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-151",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-151",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-152",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B"
+      ],
+      "new": [
+        "B",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-152",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-153",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A",
+        "C"
+      ],
+      "new": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-153",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-155",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "B",
+        "C"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-155",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-156",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-156",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-157",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-157",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-158",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-159",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-159",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-160",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-161",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-162",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-163",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-164",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-165",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-166",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-167",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-168",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-169",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-170",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-171",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-172",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-173",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-174",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-175",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-176",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-177",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-178",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-179",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-180",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-181",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-182",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-183",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-184",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-185",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-186",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-187",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-188",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-189",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-190",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-191",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-192",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-193",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-194",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-195",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-196",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-197",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-198",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-199",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-200",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-201",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-202",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-203",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-204",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-205",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-206",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-207",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-208",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-209",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-210",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-211",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-212",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "E"
+      ],
+      "new": [
+        "A",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-212",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-213",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-214",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-215",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-216",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-217",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-218",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-219",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-220",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-221",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "D"
+      ],
+      "new": [
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-221",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-222",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-223",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-224",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-225",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-226",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-227",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-228",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-229",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-229",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-230",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-231",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "D"
+      ]
+    },
+    {
+      "sample_id": "MACB-232",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-233",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-234",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "B"
+      ]
+    },
+    {
+      "sample_id": "MACB-235",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "C"
+      ],
+      "new": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-235",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-236",
+      "group": "A:admissible_set",
+      "field": "gold_admissible_set",
+      "old": [
+        "A"
+      ],
+      "new": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "sample_id": "MACB-236",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-237",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "A"
+      ]
+    },
+    {
+      "sample_id": "MACB-238",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    },
+    {
+      "sample_id": "MACB-239",
+      "group": "A:preferred_set",
+      "field": "gold_preferred_set",
+      "old": null,
+      "new": [
+        "C"
+      ]
+    }
+  ],
+  "new_distribution": {
+    "gold_conflict_type": {
+      "SC_ABSOLUTE": 78,
+      "NO_CONFLICT": 93,
+      "SC_RELATIVE": 60
+    },
+    "status_counts": {
+      "INADMISSIBLE_ABS": 224,
+      "NOT_APPLICABLE": 206,
+      "ADMISSIBLE": 295,
+      "CONDITIONALLY_ADMISSIBLE": 179,
+      "NOT_INDICATED": 251
+    },
+    "candidate_tag": {
+      "SC_ABSOLUTE_CAND": 73,
+      "SC_RELATIVE_CAND": 78,
+      "FC_CAND": 40,
+      "TREATMENT_ONLY": 40
+    },
+    "sc_absolute_count": 78,
+    "sc_relative_count": 60,
+    "avg_inadmissible_per_sc_abs": 2.14,
+    "avg_cond_admissible_per_sc_rel": 1.9
+  }
+}

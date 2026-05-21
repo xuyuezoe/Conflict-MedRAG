@@ -1,0 +1,5306 @@
+{
+  "summary": {
+    "input_file": "data/macb_treatment_v2.jsonl",
+    "output_file": "data/macb_treatment_v3.jsonl",
+    "total_samples": 231,
+    "total_changes": 751,
+    "changes_by_priority": {
+      "P0": 1,
+      "P1": 211,
+      "P2a": 131,
+      "P2b": 1,
+      "P3": 159,
+      "P4": 231,
+      "P5": 17
+    }
+  },
+  "changes": [
+    {
+      "sample_id": "MACB-001",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-003",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-004",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-005",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-006",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-006",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Magnesium sulfate and labetalol therapy | B: Platelet transfusion | C: Lisinopril therapy | D: Admit the patient to the ICU | E: Perform C-section\n\"",
+      "new": "A: Magnesium sulfate and labetalol therapy | B: Platelet transfusion | C: Lisinopril therapy | D: Admit the patient to the ICU | E: Perform C-section"
+    },
+    {
+      "sample_id": "MACB-007",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-007",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-008",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-008",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-008",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Oral levofloxacin | B: Oral cefixime and oral doxycycline | C: Intramuscular ceftriaxone | D: Oral erythromycin | E: Intramuscular ceftriaxone and oral azithromycin\n\"",
+      "new": "A: Oral levofloxacin | B: Oral cefixime and oral doxycycline | C: Intramuscular ceftriaxone | D: Oral erythromycin | E: Intramuscular ceftriaxone and oral azithromycin"
+    },
+    {
+      "sample_id": "MACB-009",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-009",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-009",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-010",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-010",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-011",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-012",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-012",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-013",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-014",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-015",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-015",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-015",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-017",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-017",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-018",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-018",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-018",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-019",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-019",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-020",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-020",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-021",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-021",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-021",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-021",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-022",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-022",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-023",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-023",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Administer erythromycin ophthalmic ointment | B: Administer positive pressure ventilation | C: Perform endotracheal intubation | D: Administer intravenous epinephrine | E: Perform chest compressions\n\"",
+      "new": "A: Administer erythromycin ophthalmic ointment | B: Administer positive pressure ventilation | C: Perform endotracheal intubation | D: Administer intravenous epinephrine | E: Perform chest compressions"
+    },
+    {
+      "sample_id": "MACB-024",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-024",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-025",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-025",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-025",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-026",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-027",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-027",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-028",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-028",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-028",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-029",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-029",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-029",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-030",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-031",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-031",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Perform a renal ultrasound | B: Outpatient treatment with oral ciprofloxacin | C: Admit the patient and request an emergent obstetrical consult | D: Inpatient treatment with intravenous ceftriaxone | E: Inpatient treatment with intravenous ampicillin and gentamicin\n\"",
+      "new": "A: Perform a renal ultrasound | B: Outpatient treatment with oral ciprofloxacin | C: Admit the patient and request an emergent obstetrical consult | D: Inpatient treatment with intravenous ceftriaxone | E: Inpatient treatment with intravenous ampicillin and gentamicin"
+    },
+    {
+      "sample_id": "MACB-032",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-032",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-033",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-033",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-033",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-034",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-034",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-034",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-035",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-035",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-035",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-035",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-036",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-036",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-036",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-036",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-037",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-038",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-038",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-039",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-039",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-040",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-040",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Propranolol | B: Diazepam | C: Prasugrel | D: Diltiazem | E: Aspirin\n\"",
+      "new": "A: Propranolol | B: Diazepam | C: Prasugrel | D: Diltiazem | E: Aspirin"
+    },
+    {
+      "sample_id": "MACB-041",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-041",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-041",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-041",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-042",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-042",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-043",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-043",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-043",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-044",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-044",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-045",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-046",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-047",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-048",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-048",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-049",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-049",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-050",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-051",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-051",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-051",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-052",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-053",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-053",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-053",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-053",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-054",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-054",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-054",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-055",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-056",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-056",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-056",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-057",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-057",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-058",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-059",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-059",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-059",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-060",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-060",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-060",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-060",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-061",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-061",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-061",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-061",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-061",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-062",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-062",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-063",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-063",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-063",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-063",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-063",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-064",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-064",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-065",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-066",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-067",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-068",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-068",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-068",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-068",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-068",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-069",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-069",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-070",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-071",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-072",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-072",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-073",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-073",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-073",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-073",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-074",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-074",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-074",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-074",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-075",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-075",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-076",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-076",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-076",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-077",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-079",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-079",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-079",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-079",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-080",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-080",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-080",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-080",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-081",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-082",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-084",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-084",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-084",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-085",
+      "priority": "P0",
+      "field": "gold_per_action_status.C",
+      "old": null,
+      "new": "INADMISSIBLE_ABS"
+    },
+    {
+      "sample_id": "MACB-085",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-086",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-087",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-087",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-088",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-088",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-088",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-088",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-089",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-089",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Iliac stenting | B: Unfractionated heparin therapy | C: Inferior vena cava filter | D: Urokinase therapy | E: Warfarin therapy\n\"",
+      "new": "A: Iliac stenting | B: Unfractionated heparin therapy | C: Inferior vena cava filter | D: Urokinase therapy | E: Warfarin therapy"
+    },
+    {
+      "sample_id": "MACB-090",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-091",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-093",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-094",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-094",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-094",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-095",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-095",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-096",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-097",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-097",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-098",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-098",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-099",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-099",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-099",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-100",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-101",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-102",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-102",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-102",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-103",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-104",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-105",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-105",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-105",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-106",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-107",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-107",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-107",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-107",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-107",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Intravenous hydration with 0.9% normal saline and insulin | B: Intravenous hydration with 5% dextrose solution and 0.45% normal saline | C: Intravenous hydration with 0.45% normal saline and insulin | D: Intravenous hydration with 0.9% normal saline and potassium chloride | E: Intravenous sodium bicarbonate\n\"",
+      "new": "A: Intravenous hydration with 0.9% normal saline and insulin | B: Intravenous hydration with 5% dextrose solution and 0.45% normal saline | C: Intravenous hydration with 0.45% normal saline and insulin | D: Intravenous hydration with 0.9% normal saline and potassium chloride | E: Intravenous sodium bicarbonate"
+    },
+    {
+      "sample_id": "MACB-108",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-108",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-108",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-108",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-109",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-110",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-110",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-110",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-110",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-111",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-111",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-112",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-112",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-113",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-113",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-114",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-114",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-114",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-114",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Transfusion of packed red blood cells | B: Plasma exchange therapy | C: Fresh frozen plasma transfusion | D: Platelet transfusion | E: Intravenous tranexamic acid\n\"",
+      "new": "A: Transfusion of packed red blood cells | B: Plasma exchange therapy | C: Fresh frozen plasma transfusion | D: Platelet transfusion | E: Intravenous tranexamic acid"
+    },
+    {
+      "sample_id": "MACB-115",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-115",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-116",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-117",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-119",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-119",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-119",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-120",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-120",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-121",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-121",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-121",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-122",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-123",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-124",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-124",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-125",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-125",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-126",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-126",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-126",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-127",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-127",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Bupropion | B: Temazepam | C: Vitamin B12 | D: Amitriptyline | E: Methotrexate\n\"",
+      "new": "A: Bupropion | B: Temazepam | C: Vitamin B12 | D: Amitriptyline | E: Methotrexate"
+    },
+    {
+      "sample_id": "MACB-128",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-128",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-129",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-129",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-129",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-129",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-130",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-130",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-130",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-131",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-131",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-131",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-131",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-132",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-132",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-133",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-134",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-135",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-135",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-135",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Switch from unfractionated heparin to warfarin therapy | B: Switch from unfractionated heparin to argatroban therapy | C: Administer vitamin K | D: Transfuse platelet concentrate | E: Administer fresh frozen plasma\n\"",
+      "new": "A: Switch from unfractionated heparin to warfarin therapy | B: Switch from unfractionated heparin to argatroban therapy | C: Administer vitamin K | D: Transfuse platelet concentrate | E: Administer fresh frozen plasma"
+    },
+    {
+      "sample_id": "MACB-136",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-136",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-136",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-136",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-137",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-137",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-137",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-138",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-139",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-139",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-140",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-140",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-140",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-140",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Intravenous antibiotic therapy | B: Surgical exploration of the abdomen | C: Oral food intake and intravenous fluid administration | D: Total parenteral nutrition and ostomy pouch | E: Wound debridement and irrigation\n\"",
+      "new": "A: Intravenous antibiotic therapy | B: Surgical exploration of the abdomen | C: Oral food intake and intravenous fluid administration | D: Total parenteral nutrition and ostomy pouch | E: Wound debridement and irrigation"
+    },
+    {
+      "sample_id": "MACB-141",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-142",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-142",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-142",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-143",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-145",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-145",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-146",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-146",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-147",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-148",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-148",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-148",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-149",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-149",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-149",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-149",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-150",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-150",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-151",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-151",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-152",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-152",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-153",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-153",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-153",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-155",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-155",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-155",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-155",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Combination therapy with captopril and valsartan | B: Percutaneous transluminal angioplasty without stent placement | C: Ramipril and percutaneous transluminal angioplasty without stent placement | D: Enalapril and aortorenal bypass with a vein graft | E: Aortorenal bypass with a vein graft\n\"",
+      "new": "A: Combination therapy with captopril and valsartan | B: Percutaneous transluminal angioplasty without stent placement | C: Ramipril and percutaneous transluminal angioplasty without stent placement | D: Enalapril and aortorenal bypass with a vein graft | E: Aortorenal bypass with a vein graft"
+    },
+    {
+      "sample_id": "MACB-156",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-156",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-156",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-156",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-157",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-157",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-158",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-159",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-159",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-159",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-159",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-159",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-160",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-160",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-160",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-160",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-160",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-161",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-161",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-161",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-161",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-161",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-161",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-162",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-162",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-162",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-162",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-162",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-163",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-163",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-163",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-163",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-164",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-164",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-164",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-164",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-164",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-164",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-165",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-165",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-165",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-165",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-165",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-165",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-166",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-166",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-166",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-166",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-166",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-166",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-167",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-168",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-168",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-168",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-168",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-168",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-168",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-169",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-169",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-169",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-169",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-169",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-169",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-170",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-170",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-170",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-170",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-170",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-170",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-171",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-171",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-171",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-171",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-171",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-171",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-172",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-172",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-172",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-172",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-172",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-172",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-173",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-173",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-173",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-173",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-173",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-174",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-174",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-174",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-174",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-174",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-174",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-175",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-175",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-175",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-175",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-175",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-175",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-176",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-176",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-177",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-177",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-178",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-178",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-178",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-178",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-178",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-178",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-179",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-179",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-179",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-179",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-179",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-179",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-180",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-180",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-180",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-180",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-180",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-180",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-180",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Nifedipine | B: Enoxaparin | C: Clopidogrel | D: Spironolactone | E: Propranolol\n\"",
+      "new": "A: Nifedipine | B: Enoxaparin | C: Clopidogrel | D: Spironolactone | E: Propranolol"
+    },
+    {
+      "sample_id": "MACB-181",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-181",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-181",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-181",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-181",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-182",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-182",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-182",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-182",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-182",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-182",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-182",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Outpatient treatment with oral penicillin V | B: Inpatient treatment with oral ivermectin | C: Outpatient treatment with topical permethrin | D: Inpatient treatment with intravenous acyclovir | E: Inpatient treatment with intravenous ceftriaxone\n\"",
+      "new": "A: Outpatient treatment with oral penicillin V | B: Inpatient treatment with oral ivermectin | C: Outpatient treatment with topical permethrin | D: Inpatient treatment with intravenous acyclovir | E: Inpatient treatment with intravenous ceftriaxone"
+    },
+    {
+      "sample_id": "MACB-183",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-183",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-183",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-183",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-184",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-184",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-184",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-184",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-184",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-184",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-185",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-186",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-186",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-186",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-186",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-186",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-186",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-187",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-187",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-187",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-188",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-188",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-188",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-188",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-188",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-188",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-189",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-189",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-190",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-190",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-190",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-190",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-190",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-190",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-191",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-191",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-191",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-191",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-191",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-192",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-192",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-192",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-192",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-192",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-192",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-193",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-194",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-194",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-194",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-194",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-194",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-194",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-195",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-195",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-195",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-195",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-195",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-196",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-196",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-196",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-196",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-196",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-197",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-197",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-197",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-197",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-197",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-197",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-197",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-198",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-198",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-198",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-198",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-198",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-199",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-199",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-199",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-199",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-199",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-200",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-200",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-200",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-200",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-200",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-200",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-201",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-201",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-201",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-201",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-202",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-202",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-202",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-202",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-202",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-202",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-203",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-204",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-204",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-204",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-204",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-204",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-205",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-205",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-205",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-205",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-205",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-205",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-206",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-206",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-206",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-206",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-206",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-207",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-207",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-208",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-208",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-208",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-208",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-208",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-209",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-209",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-209",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-209",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-209",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-210",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-210",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-210",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-210",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-211",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-211",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-211",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-211",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-211",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-211",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-211",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-212",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-212",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-212",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-212",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-212",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-212",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-213",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-213",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-213",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-213",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-213",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-214",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-214",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-214",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-214",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-215",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-215",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-215",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-215",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-215",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-216",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-216",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-216",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-216",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-216",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-217",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-217",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-217",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-217",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-217",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-218",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-218",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-218",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-218",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-218",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-218",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Continue paroxetine therapy for 2 years | B: Switch from paroxetine to venlafaxine therapy | C: Discontinue paroxetine | D: Continue paroxetine therapy for 6 months | E: Switch from paroxetine to lithium therapy\n\"",
+      "new": "A: Continue paroxetine therapy for 2 years | B: Switch from paroxetine to venlafaxine therapy | C: Discontinue paroxetine | D: Continue paroxetine therapy for 6 months | E: Switch from paroxetine to lithium therapy"
+    },
+    {
+      "sample_id": "MACB-219",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-219",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-219",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-219",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-219",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-219",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-220",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-220",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-220",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-220",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-220",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-220",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-220",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-221",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-221",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-221",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-221",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Synchronized cardioversion | B: Radiofrequency ablation | C: Procainamide therapy | D: Verapamil therapy | E: Propranolol therapy\n\"",
+      "new": "A: Synchronized cardioversion | B: Radiofrequency ablation | C: Procainamide therapy | D: Verapamil therapy | E: Propranolol therapy"
+    },
+    {
+      "sample_id": "MACB-222",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-222",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-222",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-222",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-222",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-222",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-223",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-223",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-223",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-223",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-224",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-224",
+      "priority": "P3",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-224",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-224",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-224",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-224",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-225",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-225",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-225",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-225",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-225",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-225",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-225",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-225",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-225",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-226",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-227",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-227",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-227",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-227",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-227",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-228",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-228",
+      "priority": "P1",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-228",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-228",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-228",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-228",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-228",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-228",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-228",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-229",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-229",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-229",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-230",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-230",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-230",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-230",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-230",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-230",
+      "priority": "P5",
+      "field": "options_text",
+      "old": "A: Ciprofloxacin and metronidazole therapy | B: Metronidazole and cefotaxime therapy | C: Aspiration and surgical drainage | D: Albendazole therapy | E: Pyrimethamine and sulfadiazine therapy\n\"",
+      "new": "A: Ciprofloxacin and metronidazole therapy | B: Metronidazole and cefotaxime therapy | C: Aspiration and surgical drainage | D: Albendazole therapy | E: Pyrimethamine and sulfadiazine therapy"
+    },
+    {
+      "sample_id": "MACB-231",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-231",
+      "priority": "P2b",
+      "field": "gold_conflict_type",
+      "old": "NO_CONFLICT",
+      "new": "SC_ABSOLUTE"
+    },
+    {
+      "sample_id": "MACB-231",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-232",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-232",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-232",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-232",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-232",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-232",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-232",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-233",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-233",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-233",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-233",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-233",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-233",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-234",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-234",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-234",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-234",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-234",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-235",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-235",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-235",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-235",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-235",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "CONFLICT",
+      "new": "CONFLICT"
+    },
+    {
+      "sample_id": "MACB-236",
+      "priority": "P3",
+      "field": "gold_conflict_type",
+      "old": "FC",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-236",
+      "priority": "P3",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-236",
+      "priority": "P3",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-236",
+      "priority": "P3",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-236",
+      "priority": "P3",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-236",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-237",
+      "priority": "P1",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-237",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-237",
+      "priority": "P2a",
+      "field": "gold_per_action_status.C",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-237",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-237",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-237",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-238",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-238",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-238",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-238",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-238",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-238",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    },
+    {
+      "sample_id": "MACB-239",
+      "priority": "P1",
+      "field": "gold_per_action_status.A",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-239",
+      "priority": "P1",
+      "field": "gold_per_action_status.B",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-239",
+      "priority": "P1",
+      "field": "gold_per_action_status.D",
+      "old": "INADMISSIBLE_REL",
+      "new": "CONDITIONALLY_ADMISSIBLE"
+    },
+    {
+      "sample_id": "MACB-239",
+      "priority": "P2a",
+      "field": "gold_per_action_status.A",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-239",
+      "priority": "P2a",
+      "field": "gold_per_action_status.B",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-239",
+      "priority": "P2a",
+      "field": "gold_per_action_status.D",
+      "old": "CONDITIONALLY_ADMISSIBLE",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-239",
+      "priority": "P2a",
+      "field": "gold_per_action_status.E",
+      "old": "INADMISSIBLE_ABS",
+      "new": "NOT_INDICATED"
+    },
+    {
+      "sample_id": "MACB-239",
+      "priority": "P4",
+      "field": "gold_memory_conflict_label→parametric_prior_conflict_label",
+      "old": "NO_CONFLICT",
+      "new": "NO_CONFLICT"
+    }
+  ],
+  "manual_review_needed": [
+    "MACB-210",
+    "MACB-223",
+    "MACB-235"
+  ],
+  "new_distribution": {
+    "gold_conflict_type": {
+      "SC_ABSOLUTE": 75,
+      "NO_CONFLICT": 75,
+      "SC_RELATIVE": 78,
+      "FC": 3
+    },
+    "status_counts": {
+      "INADMISSIBLE_ABS": 222,
+      "NOT_APPLICABLE": 206,
+      "ADMISSIBLE": 297,
+      "CONDITIONALLY_ADMISSIBLE": 177,
+      "NOT_INDICATED": 253
+    },
+    "parametric_prior_conflict_label": {
+      "NO_CONFLICT": 195,
+      "CONFLICT": 36
+    },
+    "candidate_tag": {
+      "SC_ABSOLUTE_CAND": 73,
+      "SC_RELATIVE_CAND": 78,
+      "FC_CAND": 40,
+      "TREATMENT_ONLY": 40
+    }
+  }
+}

@@ -1,0 +1,3912 @@
+{
+  "summary": {
+    "input_file": "data/macb_treatment_v4.jsonl",
+    "output_file": "data/macb_treatment_v5.jsonl",
+    "total_samples": 231,
+    "total_changes": 477,
+    "changes_by_group": {
+      "G": 231,
+      "H": 231,
+      "I": 7,
+      "J": 1,
+      "K": 7
+    }
+  },
+  "changes": [
+    {
+      "sample_id": "MACB-001",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-001",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-003",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-003",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-004",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-004",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-004",
+      "group": "K:reviewer_pending",
+      "field": "reviewer",
+      "old": "",
+      "new": "pending"
+    },
+    {
+      "sample_id": "MACB-005",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-005",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-006",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-006",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-007",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-007",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-008",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-008",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-009",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-009",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-010",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-010",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-011",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-011",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-012",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-012",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-013",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-013",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-014",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-014",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-015",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-015",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-017",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-017",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-018",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-018",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-019",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-019",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-020",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-020",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-021",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-021",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-022",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-022",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-023",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-023",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-024",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-024",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-025",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-025",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "contraindication_recognition"
+    },
+    {
+      "sample_id": "MACB-026",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-026",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-027",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-027",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-028",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-028",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-029",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-029",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-030",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-030",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-031",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-031",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-032",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-032",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-033",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-033",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-034",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-034",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-035",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-035",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-036",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-036",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-037",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-037",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-038",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-038",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-039",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-039",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-040",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-040",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "contraindication_recognition"
+    },
+    {
+      "sample_id": "MACB-041",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-041",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-042",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-042",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-043",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-043",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-044",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-044",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-045",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-045",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-046",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-046",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-047",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-047",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-048",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-048",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-049",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-049",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-050",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-050",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-051",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-051",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-052",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-052",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-053",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-053",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-054",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-054",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-055",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-055",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-056",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-056",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-057",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-057",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-058",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-058",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-058",
+      "group": "K:reviewer_pending",
+      "field": "reviewer",
+      "old": "",
+      "new": "pending"
+    },
+    {
+      "sample_id": "MACB-059",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-059",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-060",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-060",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-061",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-061",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-062",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-062",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-063",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-063",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-064",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-064",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-065",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-065",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-066",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-066",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-067",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-067",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-068",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-068",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-069",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-069",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-070",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-070",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-071",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-071",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-072",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-072",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-073",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-073",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-074",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-074",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-075",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-075",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-076",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-076",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-077",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-077",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-077",
+      "group": "K:reviewer_pending",
+      "field": "reviewer",
+      "old": "",
+      "new": "pending"
+    },
+    {
+      "sample_id": "MACB-079",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-079",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-080",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-080",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-081",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-081",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-082",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-082",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-084",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-084",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-085",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-085",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-086",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-086",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-087",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-087",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-088",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-088",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-089",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-089",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-090",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-090",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-091",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-091",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-093",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-093",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-094",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-094",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-095",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-095",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-096",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-096",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-096",
+      "group": "I:scsr_needed_false",
+      "field": "gold_scsr_needed",
+      "old": true,
+      "new": false
+    },
+    {
+      "sample_id": "MACB-096",
+      "group": "I:scsr_query_clear",
+      "field": "gold_scsr_query",
+      "old": "Drug contraindications and dosing adjustments for patients with hyperkalemia in the preoperative setting.",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-097",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-097",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-098",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-098",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-099",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-099",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-100",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-100",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-101",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-101",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-102",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-102",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-102",
+      "group": "K:reviewer_pending",
+      "field": "reviewer",
+      "old": "",
+      "new": "pending"
+    },
+    {
+      "sample_id": "MACB-103",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-103",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-104",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-104",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-105",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-105",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-106",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-106",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-107",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-107",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-108",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-108",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-109",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-109",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-110",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-110",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-111",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-111",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-112",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-112",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-113",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-113",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-114",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-114",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-115",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-115",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-116",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-116",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-116",
+      "group": "I:scsr_needed_false",
+      "field": "gold_scsr_needed",
+      "old": true,
+      "new": false
+    },
+    {
+      "sample_id": "MACB-116",
+      "group": "I:scsr_query_clear",
+      "field": "gold_scsr_query",
+      "old": "Drug contraindications and dosing recommendations for patients with severe hypoglycemia (blood glucose <50 mg/dL).",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-117",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-117",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-119",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-119",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-120",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-120",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-121",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-121",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-122",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-122",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-122",
+      "group": "K:reviewer_pending",
+      "field": "reviewer",
+      "old": "",
+      "new": "pending"
+    },
+    {
+      "sample_id": "MACB-123",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-123",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-124",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-124",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-124",
+      "group": "K:reviewer_pending",
+      "field": "reviewer",
+      "old": "",
+      "new": "pending"
+    },
+    {
+      "sample_id": "MACB-125",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-125",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-126",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-126",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-127",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-127",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-128",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-128",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-129",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-129",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-130",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-130",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-131",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-131",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-132",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-132",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-133",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-133",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-134",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-134",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-135",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-135",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-136",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-136",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-137",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-137",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-138",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-138",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-139",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-139",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-140",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-140",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-141",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-141",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-141",
+      "group": "K:reviewer_pending",
+      "field": "reviewer",
+      "old": "",
+      "new": "pending"
+    },
+    {
+      "sample_id": "MACB-142",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-142",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-143",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-143",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-145",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-145",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-146",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-146",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-147",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-147",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-148",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-148",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-149",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-149",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-150",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-150",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-151",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-151",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-152",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-152",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-153",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-153",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-155",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-155",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-156",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-156",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-157",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-157",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-158",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-158",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-159",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-159",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-160",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-160",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-161",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-161",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-162",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-162",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-163",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-163",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-164",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-164",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-165",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-165",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-166",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-166",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-167",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-167",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-167",
+      "group": "J:notes_fix",
+      "field": "notes",
+      "old": "Elevated HbA2 with microcytic anemia confirms beta-thalassemia trait, a benign condition requiring no treatment; succimer is for lead poisoning, pyridoxine is for sideroblastic anemia, and iron is contraindicated in thalassemia.",
+      "new": "Elevated HbA2 with microcytic anemia confirms beta-thalassemia trait, a benign condition requiring no treatment; succimer is for lead poisoning, pyridoxine is for sideroblastic anemia, and iron supplementation is not indicated in thalassemia unless iron deficiency is documented."
+    },
+    {
+      "sample_id": "MACB-168",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-168",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-169",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-169",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-170",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-170",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-171",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-171",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-172",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-172",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-173",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-173",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-174",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-174",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-175",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-175",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-176",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-176",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-177",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-177",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-178",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-178",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-179",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-179",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-180",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-180",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-181",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-181",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-182",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-182",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-183",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-183",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-184",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-184",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-185",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-185",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-186",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-186",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-187",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-187",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-188",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-188",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-189",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-189",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-190",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-190",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-191",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-191",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-192",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-192",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-193",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-193",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-194",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-194",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-195",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-195",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-196",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-196",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-197",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-197",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-198",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-198",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-199",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-199",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-200",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-200",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-201",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-201",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-202",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-202",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-203",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-203",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-204",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-204",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-205",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-205",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-206",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-206",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-207",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-207",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-208",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-208",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-209",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-209",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-210",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-210",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-210",
+      "group": "I:scsr_needed_false",
+      "field": "gold_scsr_needed",
+      "old": true,
+      "new": false
+    },
+    {
+      "sample_id": "MACB-210",
+      "group": "I:scsr_query_clear",
+      "field": "gold_scsr_query",
+      "old": "What are the drug contraindications or dosing recommendations for pediatric patients who are recent immigrants from Africa with uncertain immunization status?",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-211",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-211",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-212",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-212",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-213",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-213",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-214",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-214",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-215",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-215",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-216",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-216",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-217",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-217",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-218",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-218",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-219",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-219",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-220",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-220",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-221",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-221",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-222",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-222",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-223",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-223",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-224",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-224",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-225",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-225",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-226",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-226",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-227",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-227",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-228",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-228",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-229",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-229",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-230",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-230",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-231",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE"
+      ]
+    },
+    {
+      "sample_id": "MACB-231",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-232",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-232",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-233",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-233",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-234",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-234",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-235",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-235",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-236",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "SC_ABSOLUTE",
+        "SC_RELATIVE"
+      ]
+    },
+    {
+      "sample_id": "MACB-236",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-237",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-237",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-237",
+      "group": "I:scsr_query_clear",
+      "field": "gold_scsr_query",
+      "old": "Which medications are contraindicated or require dose adjustment in patients with chronic hepatitis B (hepatic impairment)?",
+      "new": ""
+    },
+    {
+      "sample_id": "MACB-238",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-238",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    },
+    {
+      "sample_id": "MACB-239",
+      "group": "G:conflict_types_present",
+      "field": "gold_conflict_types_present",
+      "old": null,
+      "new": [
+        "NO_CONFLICT"
+      ]
+    },
+    {
+      "sample_id": "MACB-239",
+      "group": "H:task_type",
+      "field": "task_type",
+      "old": null,
+      "new": "treatment_recommendation"
+    }
+  ],
+  "new_distribution": {
+    "gold_conflict_type": {
+      "SC_ABSOLUTE": 78,
+      "NO_CONFLICT": 93,
+      "SC_RELATIVE": 60
+    },
+    "task_type": {
+      "treatment_recommendation": 229,
+      "contraindication_recognition": 2
+    },
+    "gold_conflict_types_present_distribution": {
+      "['SC_ABSOLUTE']": 38,
+      "['NO_CONFLICT']": 93,
+      "['SC_ABSOLUTE', 'SC_RELATIVE']": 76,
+      "['SC_RELATIVE']": 24
+    },
+    "mixed_sc_count": 76
+  }
+}

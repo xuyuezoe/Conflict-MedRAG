@@ -1,0 +1,52 @@
+# 敏感配置（绝对不提交）
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+dist/
+build/
+
+# 索引与缓存（体积大，本地生成）
+data/index/
+data/cache/
+
+# 实验结果（按需提交）
+results/
+results_test/
+
+# 原始教材（版权保护，不可分发）
+data_clean/textbooks/
+
+# MedQA 原始问题（从 https://github.com/jind11/MedQA 下载）
+data_clean/questions/
+
+# MACB 构建中间产物（不需要复现实验）
+data/interim/
+data/macb_v1.jsonl
+data/macb_candidates_v3.jsonl
+data/macb_excluded.jsonl
+
+# 已废弃的旧版 benchmark（当前版本为 macb_treatment_v5.jsonl）
+data/macb_treatment_v1.jsonl
+data/macb_treatment_v2.jsonl
+data/macb_treatment_v3.jsonl
+data/macb_treatment_v4.jsonl
+
+# 实验运行日志（本地调试用，不需要复现）
+run_log/
+
+# Claude Code 本地配置（个人工具设置）
+.claude/
+
+# 本地交流与内部草稿（不对外公开）
+gpt.md
+research.md
+CLAUDE.md
+docs/implementation_plan.md
+
+# macOS（递归排除所有子目录）
+**/.DS_Store
+.DS_Store
