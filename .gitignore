@@ -16,6 +16,7 @@ data/cache/
 # 实验结果（按需提交）
 results/
 results_test/
+results_cvfr/
 
 # 原始教材（版权保护，不可分发）
 data_clean/textbooks/
@@ -45,6 +46,7 @@ run_log/
 gpt.md
 research.md
 CLAUDE.md
+docs/
 docs/implementation_plan.md
 
 # macOS（递归排除所有子目录）
