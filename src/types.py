@@ -46,18 +46,18 @@ class PatientConstraint:
 
         数学公式（research.md §3.5.2）：
           ABSOLUTE → κ = 0
-          RELATIVE → κ = f(δ) = 1 - max(0, threshold - actual) / threshold
+          RELATIVE（有参数）→ κ = f(δ) = 1 - max(0, threshold - actual) / threshold
+          RELATIVE（无参数）→ κ = 0.5（定性约束保守默认，LLM 未能提取数值）
           NONE     → κ = 1
         """
         if self.constraint_type == "ABSOLUTE":
             return 0.0
         if self.constraint_type == "RELATIVE":
             if self.parameter_value is None or self.parameter_threshold is None:
-                raise ValueError(
-                    f"[PatientConstraint] RELATIVE 约束必须提供 parameter_value 和 "
-                    f"parameter_threshold，但当前 target_action={self.target_action} "
-                    f"的两个参数均为 None。"
-                )
+                # LLM 提取了约束但未获得数值参数（如定性描述"elevated AST/ALT"、
+                # 胎龄无阈值等），无法计算精确 f(δ)。
+                # 保守默认 κ=0.5：承认相对禁忌存在，施加中等惩罚，同时不物理排除文档。
+                return 0.5
             delta = max(0.0, self.parameter_threshold - self.parameter_value)
             return 1.0 - delta / self.parameter_threshold
         return 1.0
@@ -66,24 +66,33 @@ class PatientConstraint:
 @dataclass
 class QueryDecomposition:
     """
-    Module 0 的输出：自然语言 query 分解为 (D_q, C_q)。
+    Module 0 的输出：自然语言 query 分解为 (D_q, C_q, A_q)。
 
-    数学含义（research.md §3.5.1）：
-      D_q 用于 sim(D_q, d)（疾病相关性）
-      C_q 用于 κ(C_q, π_d)（适用范围相容性）
-      两者正交，不可混合编码
+    数学含义（cvfr_theory.md §2.2）：
+      最小充分检索结构为三元组 (D, C, a)：
+        D_q 用于 sim(D_q, d)（疾病相关性）
+        C_q 用于 κ(C_q, π_d)（适用范围蕴含判断）
+        A_q 是候选治疗动作集合（约束 C 作用在 action 上，而非直接作用在疾病上）
+      三者正交，约束 C 是 action-specific 的，不是 disease-specific 的。
+
+    两阶段引入 A_q（避免循环依赖）：
+      Phase 1：用 D_q 宽泛检索后枚举 A_q（若 LLM 可在分解阶段识别候选动作则直接填入）
+      Phase 2：对每个 a ∈ A_q 做 (D, C, a) 条件适用性检索
 
     参数：
-        original_query:  原始输入 query（完整，含疾病+约束）
-        disease_query:   D_q（纯疾病查询，去除患者约束）
-        constraints:     C_q（患者约束结构化列表）
-        decompose_model: 用于分解的 LLM 模型 ID
-        debug:           LLM 原始输出和中间状态（供调试）
+        original_query:     原始输入 query（完整，含疾病+约束）
+        disease_query:      D_q（纯疾病查询，去除患者约束）
+        constraints:        C_q（患者约束结构化列表）
+        decompose_model:    用于分解的 LLM 模型 ID
+        candidate_actions:  A_q（候选治疗动作列表，从 query 或检索结果中枚举）
+                            空列表表示未枚举（Phase 0），需要在 Phase 1 检索后填充
+        debug:              LLM 原始输出和中间状态（供调试）
     """
     original_query: str
     disease_query: str
     constraints: List[PatientConstraint]
     decompose_model: str
+    candidate_actions: List[str] = field(default_factory=list)
     debug: Dict[str, Any] = field(default_factory=dict)
 
     @property
@@ -131,20 +140,37 @@ class TextChunk:
 @dataclass
 class ScopePredicate:
     """
-    文献适用范围谓词 π_d，由 LLM 从文档文本中提取。
+    文献适用范围谓词 π_d（v2，含结构化适用域）。
 
-    数学含义（research.md §3.5.1）：
-      π_d(x) = True 当且仅当患者 x 属于文献 d 的研究人群。
-      κ(C_q, π_d) 计算患者约束 C_q 与文献 scope π_d 的相容性。
+    数学含义（cvfr_theory.md §6）：
+      π_d(x, a) = True 当且仅当患者 x 在治疗动作 a 的背景下满足文献适用域。
+      κ(C_q, π_d) 实现为：C_patient ⊨ Scope(d, a) 的蕴含判断。
 
     参数：
         chunk_id:              对应文本块 ID
-        recommended_action:    文献推荐的主要 action（药物名或操作）
-        population:            适用人群描述
-        contraindications:     文献中明示的绝对禁忌证列表（精确匹配用）
-        relative_restrictions: 文献中明示的相对禁忌（需剂量调整等）
+        recommended_action:    文献推荐的主要 action（药物名或操作，可 "none"）
+        population:            适用人群自然语言描述
+        polarity:              文献对 action 的态度
+                               recommended:      积极推荐
+                               contraindicated:  绝对禁忌（hard gate 触发 κ=0）
+                               caution:          相对禁忌 / 需注意
+                               dose_adjustment:  需要剂量调整
+                               not_applicable:   文献未涉及具体推荐
+        scope_inclusion:       明确适用的人群特征列表（如 ["adult", "pregnancy-compatible"]）
+        scope_exclusion:       明确排除的人群特征列表（如 ["pregnancy", "renal impairment"]）
+        scope_status:          适用域提取状态
+                               explicit:      文献明确声明了 scope 条件
+                               inferred:      LLM 从上下文推断（不确定性较高）
+                               not_specified: 文献未明确描述 scope（≠ 无禁忌）
+        contraindications:     文献明示的禁忌证描述列表（后向兼容，与 scope_exclusion 部分重叠）
+        relative_restrictions: 文献明示的相对禁忌（需剂量调整等）
         extraction_model:      提取所用 LLM 模型 ID
         raw_output:            LLM 原始 JSON 输出（供调试和审计）
+
+    重要语义约定：
+        scope_status="not_specified" ≠ "无禁忌"。
+        未在文本中找到 scope 声明时，不应推断为"适用于所有患者"，
+        而应在 κ 计算中以 UNKNOWN 处理（保守默认 κ=0.5，而非 κ=1.0）。
     """
     chunk_id: str
     recommended_action: str
@@ -153,6 +179,18 @@ class ScopePredicate:
     relative_restrictions: List[Dict[str, str]]
     extraction_model: str
     raw_output: str
+    # v2 新增字段（含默认值以保持对旧缓存的向后兼容）
+    polarity: Literal[
+        "recommended", "contraindicated", "caution", "dose_adjustment", "not_applicable"
+    ] = "not_applicable"
+    scope_inclusion: List[str] = field(default_factory=list)
+    scope_exclusion: List[str] = field(default_factory=list)
+    scope_status: Literal["explicit", "inferred", "not_specified"] = "not_specified"
+
+    @property
+    def is_hard_contraindicated(self) -> bool:
+        """是否为明确禁忌（polarity=contraindicated → hard gate 直接返回 κ=0）"""
+        return self.polarity == "contraindicated"
 
 
 @dataclass
@@ -230,19 +268,26 @@ class MARCOutput:
       不仅返回最终答案，还携带所有中间阶段的完整信息，
       供评估指标计算（CRR/SDR/AEC/FC-AA/SLR）和论文分析使用。
 
+    双空间检索架构（research.md §3.6）：
+      stage1_docs:   Stage 1A（疾病空间）+ Stage 1B（约束空间）融合池的全量评分结果
+                     即 R_D ∪ R_C 中所有文档（含 κ=0 的 INADMISSIBLE 文档）
+      stage2_docs:   E(q)：融合池中 κ > 0 的精准证据集，按 S_joint × κ 降序
+
     参数：
-        query:              原始查询文本
-        decomposition:      Module 0 分解结果（D_q + C_q）
-        stage1_docs:        Stage 1 检索结果（top-K，未过滤）
-        stage2_docs:        Stage 2 DCR 结果（κ>0，已过滤）
-        scsr_triggered:     是否触发 Stage 3 SCSR
-        scsr_docs:          Stage 3 补充文献（按需，可为空列表）
-        fc_conflicts:       FC 冲突检测结果
-        generated_answer:   最终生成的治疗推荐文本
-        per_action_status:  各 action 的可行性状态（系统预测值）
-        attribution:        每个 claim 的来源 chunk_id 列表
-        srl_violations:     引用了 κ=0 文献的 claim（SLR 违规列表）
-        metrics:            运行时指标（延迟、token 数、API 调用次数、总成本）
+        query:               原始查询文本
+        decomposition:       Module 0 分解结果（D_q + C_q）
+        stage1_docs:         双空间融合池全量评分（含 κ=0 文档，用于 SLR 计算）
+        stage2_docs:         E(q)：κ > 0 的精准证据集（生成器上下文来源）
+        stage1b_docs:        Stage 1B 约束空间检索的评分文档（R_C 子集，调试用）
+        constraint_queries:  Stage 1B 生成的约束检索 query（{target_action → query}）
+        scsr_triggered:      Stage 1B 是否产生了新文档（True = 约束空间检索有贡献）
+        scsr_docs:           Stage 1B 中 κ > 0 的文档（向后兼容字段，同 stage1b admissible）
+        fc_conflicts:        FC 冲突检测结果
+        generated_answer:    最终生成的治疗推荐文本
+        per_action_status:   各 action 的可行性状态（系统预测值）
+        attribution:         每个 claim 的来源 chunk_id 列表
+        srl_violations:      引用了 κ=0 文献的 claim（SLR 违规列表）
+        metrics:             运行时指标（延迟、token 数、API 调用次数、总成本）
     """
     query: str
     decomposition: QueryDecomposition
@@ -256,15 +301,18 @@ class MARCOutput:
     attribution: List[Dict[str, Any]]
     srl_violations: List[str]
     metrics: Dict[str, Any] = field(default_factory=dict)
+    # 双空间检索新增字段（正交双空间架构 research.md §3.6）
+    stage1b_docs: List[RetrievedDoc] = field(default_factory=list)
+    constraint_queries: Dict[str, str] = field(default_factory=dict)
 
     @property
     def admissible_docs(self) -> List[RetrievedDoc]:
-        """Stage 2 + Stage 3 中 κ > 0 的全部文档"""
-        return [d for d in self.stage2_docs if d.is_admissible] + self.scsr_docs
+        """E(q)：κ > 0 的精准证据集（stage2_docs 已过滤，直接返回）"""
+        return [d for d in self.stage2_docs if d.is_admissible]
 
     @property
     def inadmissible_chunk_ids(self) -> Set[str]:
-        """Stage 1 中 κ = 0 的文档 ID 集合（用于 SLR 计算）"""
+        """双空间融合池中 κ = 0 的文档 ID 集合（用于 SLR 计算）"""
         return {d.chunk.chunk_id for d in self.stage1_docs if d.is_absolutely_inadmissible}
 
 

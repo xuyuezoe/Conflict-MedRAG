@@ -92,6 +92,17 @@ def build_systems(config: ExperimentConfig) -> Dict[str, object]:
             from experiments._marc_wrapper import MARCSystemWrapper
             systems["marc"] = MARCSystemWrapper(pipeline)
 
+        elif system_name == "marc_with_fc":
+            pipeline_fc = build_marc_pipeline(
+                index_dir=str(config.index_dir),
+                cache_dir=str(config.cache_dir),
+                stage1_top_k=config.stage1_top_k,
+                stage2_top_k=config.stage2_top_k,
+                enable_fc=True,
+            )
+            from experiments._marc_wrapper import MARCSystemWrapper
+            systems["marc_with_fc"] = MARCSystemWrapper(pipeline_fc)
+
         elif system_name == "marc_no_dcr":
             decomposer = QueryDecomposer(
                 client=client,
@@ -106,7 +117,7 @@ def build_systems(config: ExperimentConfig) -> Dict[str, object]:
             )
 
         elif system_name == "marc_no_scsr":
-            # 独立构建管道（注入 _DisabledSCSRRetriever）
+            # 独立构建管道（注入 _DisabledConstraintRetriever，禁用 Stage 1B）
             pipeline_no_scsr = build_marc_no_scsr_pipeline(
                 index_dir=str(config.index_dir),
                 cache_dir=str(config.cache_dir),
@@ -221,18 +232,26 @@ def _print_summary_table(
     格式（适合直接复制到论文）：
       System    | CRR↓   | SDR↑   | AEC↑   | SLR↓
     """
-    header = f"{'System':<20} | {'CRR↓':>8} | {'SDR↑':>8} | {'AEC↑':>8} | {'SLR↓':>8}"
+    header = (
+        f"{'System':<20} | {'CRR↓':>8} | {'SDR↑':>8} | {'AEC↑':>8} | {'SLR↓':>8}"
+        f" | {'CDR↑':>8} | {'RSI↑':>8} | {'CAEC↑':>8}"
+    )
     sep = "-" * len(header)
     rows = [header, sep]
 
     for system_name, metrics in all_metrics.items():
         def fmt(m: dict) -> str:
             v = m.get("mean", float("nan"))
-            return f"{v:.4f}" if v == v else "  N/A  "   # nan check
+            if v != v:          # nan check
+                return "  N/A  "
+            return f"{v:.4f}" if m.get("n", 0) > 0 else "   -   "
 
         row = (
             f"{system_name:<20} | {fmt(metrics['CRR']):>8} | {fmt(metrics['SDR']):>8} | "
             f"{fmt(metrics['AEC']):>8} | {fmt(metrics['SLR']):>8}"
+            f" | {fmt(metrics.get('CDR', {'n': 0})):>8}"
+            f" | {fmt(metrics.get('RSI', {'n': 0})):>8}"
+            f" | {fmt(metrics.get('CAEC', {'n': 0})):>8}"
         )
         rows.append(row)
 

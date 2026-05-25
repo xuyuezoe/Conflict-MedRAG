@@ -24,6 +24,13 @@ import numpy as np
 
 from src.types import TextChunk
 
+# SentenceTransformer 类型注解（避免在未安装时报错）
+try:
+    from sentence_transformers import SentenceTransformer as _SentenceTransformer
+    _SentenceTransformerType = _SentenceTransformer
+except ImportError:
+    _SentenceTransformerType = None
+
 
 # ── 检索结果 ──────────────────────────────────────────────────────────────────
 
@@ -133,19 +140,34 @@ class HybridRetriever:
                 f"将仅使用 BM25 检索。"
             )
 
+    @property
+    def embedding_model(self):
+        """
+        返回 Dense 检索所用的 SentenceTransformer 实例。
+
+        供 CVFRQueryConstructor 复用，避免重复加载模型（1024-dim BGE-M3 约 2GB）。
+        若 Dense 索引未加载，返回 None。
+        """
+        return self._embedding_model
+
     def retrieve(
         self,
         query: str,
         top_k: int = 20,
         method: Literal["hybrid", "bm25", "dense"] = "hybrid",
+        query_vector: Optional[np.ndarray] = None,
     ) -> List[RetrievalResult]:
         """
         执行检索，返回按分数降序排列的文本块列表。
 
         参数：
-            query:  检索查询（D_q 或完整 q，由调用方决定语义）
-            top_k:  返回结果数量上限
-            method: 检索方法（hybrid/bm25/dense）
+            query:        检索查询文本（BM25 始终使用；Dense 在 query_vector=None 时使用）
+            top_k:        返回结果数量上限
+            method:       检索方法（hybrid/bm25/dense）
+            query_vector: 预计算的 Dense 查询向量（float32, L2 归一化）
+                          若提供，Dense 检索跳过 text encoding，直接使用此向量。
+                          这是 CVFR Phase 0 的注入接口：传入 e*(D,C) 替代 e_D。
+                          BM25 检索不受影响，仍使用 query 文本。
 
         返回：
             RetrievalResult 列表，按 score 降序，最多 top_k 条。
@@ -162,8 +184,8 @@ class HybridRetriever:
         if method == "bm25":
             return self._bm25_search(query, top_k)
         if method == "dense":
-            return self._dense_search(query, top_k)
-        return self._hybrid_search(query, top_k)
+            return self._dense_search(query, top_k, query_vector=query_vector)
+        return self._hybrid_search(query, top_k, query_vector=query_vector)
 
     def _bm25_search(self, query: str, top_k: int) -> List[RetrievalResult]:
         """
@@ -190,17 +212,35 @@ class HybridRetriever:
             ))
         return results
 
-    def _dense_search(self, query: str, top_k: int) -> List[RetrievalResult]:
+    def _dense_search(
+        self,
+        query: str,
+        top_k: int,
+        query_vector: Optional[np.ndarray] = None,
+    ) -> List[RetrievalResult]:
         """
         Dense 向量检索（FAISS + SentenceTransformer）。
 
-        查询 embedding 同样 L2 归一化，与 IndexFlatIP 配合实现余弦相似度。
+        查询 embedding L2 归一化，与 IndexFlatIP 配合实现余弦相似度。
+
+        参数：
+            query:        查询文本（query_vector=None 时编码此文本）
+            top_k:        返回结果数量上限
+            query_vector: 预计算的归一化查询向量（float32, shape=(d,)）
+                          提供时跳过 text encoding，直接用于 FAISS 检索。
+                          CVFR Phase 0 通过此接口注入 e*(D, C)。
         """
-        query_embedding = self._embedding_model.encode(
-            [query],
-            normalize_embeddings=True,
-            convert_to_numpy=True,
-        ).astype(np.float32)
+        if query_vector is not None:
+            # CVFR 路径：使用预计算的条件查询向量
+            query_embedding = query_vector.reshape(1, -1).astype(np.float32)
+        else:
+            # 标准路径：编码查询文本
+            query_embedding = self._embedding_model.encode(
+                [query],
+                normalize_embeddings=True,
+                convert_to_numpy=True,
+                show_progress_bar=False,
+            ).astype(np.float32)
 
         distances, indices = self._faiss_index.search(query_embedding, top_k)
 
@@ -219,18 +259,32 @@ class HybridRetriever:
             ))
         return results
 
-    def _hybrid_search(self, query: str, top_k: int) -> List[RetrievalResult]:
+    def _hybrid_search(
+        self,
+        query: str,
+        top_k: int,
+        query_vector: Optional[np.ndarray] = None,
+    ) -> List[RetrievalResult]:
         """
         混合检索：RRF 融合 BM25 和 Dense 排名。
 
         RRF 公式：score(d) = bm25_weight × 1/(rank_bm25(d)+k)
                             + dense_weight × 1/(rank_dense(d)+k)
         未在某方法排名中出现的文档，按排名 = top_k + 1 处理。
+
+        参数：
+            query:        查询文本（BM25 使用；Dense 在 query_vector=None 时使用）
+            top_k:        返回结果数量上限
+            query_vector: 预计算的 Dense 查询向量（CVFR 注入接口，详见 _dense_search）
         """
         # 获取两个方法的结果（扩大检索量，保证 RRF 融合后仍有足够候选）
         pool_k = min(top_k * 3, 60)
         bm25_results = self._bm25_search(query, pool_k)
-        dense_results = self._dense_search(query, pool_k) if self._faiss_index else []
+        # Dense 检索：传入 query_vector（CVFR 路径）或 None（标准路径）
+        dense_results = (
+            self._dense_search(query, pool_k, query_vector=query_vector)
+            if self._faiss_index else []
+        )
 
         # 建立排名映射
         bm25_rank_map: Dict[str, int] = {r.chunk.chunk_id: r.bm25_rank for r in bm25_results}

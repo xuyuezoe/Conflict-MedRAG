@@ -37,7 +37,12 @@ You must:
 1. Base your recommendation ONLY on the provided evidence passages
 2. Cite the source chunk_id for each key claim
 3. Never recommend treatments listed in the SCOPE BIAS WARNING
-4. Return a JSON response in the specified format"""
+4. Before selecting your answer, explicitly assess EVERY option for patient safety:
+   - AVOIDED: option is contraindicated, clinically not indicated, or unsafe for this patient
+     (even if the SCOPE BIAS WARNING does not list it — use the patient profile to judge)
+   - RECOMMENDED: option is supported by evidence AND safe for this patient
+   - NOT_MENTIONED: option is not addressed by evidence and has no clear safety concern
+5. Return a JSON response in the specified format"""
 
 SCOPE_ANCHORED_USER = """\
 PATIENT PROFILE:
@@ -58,6 +63,11 @@ FC CONFLICT NOTES (if any):
 
 ANSWER OPTIONS:
 {options_section}
+
+PATIENT SAFETY REASONING (complete before answering):
+For each option, ask: "Is this clinically appropriate AND safe for this specific \
+patient given their profile?" Options that are contraindicated, not clinically \
+indicated, or bypass necessary treatment steps MUST be marked AVOIDED.
 
 TASK: Based ONLY on the admissible evidence above, select the single best \
 option for this patient. Classify EVERY option listed above.
@@ -221,18 +231,29 @@ class ScopeAnchoredGenerator:
         """
         构造 SCOPE BIAS WARNING 文本。
 
-        将绝对禁忌的 action 和约束原文结合，强调不可推荐。
+        优先使用约束的 raw_text（ConstraintExpander 提供完整类别展开信息）：
+          - "Patient is allergic to tetracycline class (includes: doxycycline, minocycline, ...)"
+          - "Patient is pregnant — absolutely contraindicated: warfarin, isotretinoin, ..."
+
+        此格式帮助生成器精确识别禁忌药物，避免将非同类药（如 azithromycin 是大环内酯，
+        不是四环素）误判为禁忌（MACB-008 根因修复）。
         """
         if not inadmissible_actions and not decomposition.has_absolute_constraint:
             return "None (no absolute contraindications identified)"
 
         lines = []
-        for action in inadmissible_actions:
-            lines.append(f"  - {action} (ABSOLUTELY CONTRAINDICATED for this patient)")
+        covered_actions: set = set()
 
+        # 优先展示约束的完整 raw_text（含类别成员展开）
         for c in decomposition.constraints:
             if c.constraint_type == "ABSOLUTE":
-                lines.append(f"  - Reason: {c.raw_text}")
+                lines.append(f"  - CONTRAINDICATED: {c.raw_text}")
+                covered_actions.add(c.target_action.lower())
+
+        # 补充 inadmissible_actions 中未被约束覆盖的项（向后兼容旧 QueryDecomposer 路径）
+        for action in inadmissible_actions:
+            if action.lower() not in covered_actions:
+                lines.append(f"  - {action} (ABSOLUTELY CONTRAINDICATED for this patient)")
 
         return "\n".join(lines) if lines else "None"
 

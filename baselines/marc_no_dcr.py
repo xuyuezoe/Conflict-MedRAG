@@ -71,7 +71,7 @@ class MARCNoDCR(BaseRAGSystem):
     def system_name(self) -> str:
         return "marc_no_dcr"
 
-    def run(self, query: str, sample_id: str) -> SampleResult:
+    def run(self, query: str, sample_id: str, patient_profile=None) -> SampleResult:
         """
         MARC-noDCR 推理流程。
 

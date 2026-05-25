@@ -74,7 +74,7 @@ class PICOsRAG(BaseRAGSystem):
     def system_name(self) -> str:
         return "picos_rag"
 
-    def run(self, query: str, sample_id: str) -> SampleResult:
+    def run(self, query: str, sample_id: str, patient_profile=None) -> SampleResult:
         """
         PICOs-RAG 推理流程。
 

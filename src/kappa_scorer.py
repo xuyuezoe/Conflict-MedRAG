@@ -101,27 +101,49 @@ RELATIVE_RESTRICTION_RULES: List[Tuple[str, str]] = [
 ]
 
 
-# ── π_d 提取 Prompt ───────────────────────────────────────────────────────────
+# ── π_d 提取 Prompt（v2，含 polarity/scope/status 结构化字段）────────────────
 
 SCOPE_EXTRACTION_PROMPT = """\
-Extract the scope predicate from this medical text passage.
-Identify what treatment is being recommended and who it is recommended for.
+Extract the structured scope predicate from this medical text passage.
+Identify the treatment action, its clinical polarity, and the applicability scope.
 
-Return ONLY valid JSON:
+Return ONLY valid JSON in this exact format:
 {{
-  "recommended_action": "<primary drug or treatment mentioned>",
-  "population": "<who this treatment is for, e.g., 'adults with ABRS'>",
-  "contraindications": ["<explicit contraindication 1>", "<explicit contraindication 2>"],
+  "recommended_action": "<primary drug or treatment, or 'none' if absent>",
+  "population": "<natural language description of who this treatment is for>",
+  "polarity": "<one of: recommended | contraindicated | caution | dose_adjustment | not_applicable>",
+  "scope_inclusion": ["<population characteristic that IS included, e.g. 'adult', 'pregnancy-compatible'>"],
+  "scope_exclusion": ["<population characteristic that is EXCLUDED, e.g. 'pregnancy', 'penicillin allergy'>"],
+  "contraindications": ["<explicit contraindication description>"],
   "relative_restrictions": [
     {{
-      "condition": "<e.g., 'renal impairment'>",
-      "threshold": "<e.g., 'eGFR < 30 mL/min'>"
+      "condition": "<e.g. 'renal impairment'>",
+      "threshold": "<e.g. 'eGFR < 30 mL/min'>"
     }}
-  ]
+  ],
+  "scope_status": "<one of: explicit | inferred | not_specified>"
 }}
 
-If no clear treatment is recommended, use recommended_action: "none".
-If no explicit contraindications are mentioned, use contraindications: [].
+Polarity rules:
+  recommended:    The text positively recommends this action for the stated population.
+  contraindicated: The text states this action is contraindicated / should be avoided.
+  caution:        The text recommends with significant caveats or warns of risks.
+  dose_adjustment: The text requires dose modification for certain populations.
+  not_applicable: The text does not make a specific treatment recommendation.
+
+Scope status rules:
+  explicit:     The text explicitly states who the treatment is (or is not) for.
+  inferred:     The scope can be reasonably inferred from context (mark conservatively).
+  not_specified: The text mentions a treatment but does not state its applicability scope.
+
+CRITICAL RULES:
+  1. scope_status="not_specified" does NOT mean "no contraindications". It means the text
+     did not state who the treatment applies to. Do NOT populate scope_inclusion or
+     scope_exclusion if the text does not mention them — leave them as empty lists.
+  2. If the text is recommending an alternative FOR patients who cannot use Drug X,
+     polarity should be "recommended" for the alternative, and scope_inclusion should
+     mention the relevant patient population (e.g. "penicillin-allergic patients").
+  3. Use "contraindicated" polarity only when the text explicitly states contraindication.
 
 Medical text:
 {text}
@@ -230,12 +252,56 @@ class KappaScorer:
 
     _BATCH_SIZE: int = 10   # 每次 LLM 调用处理的文档数（推理模型下 10 个约 4000 tokens）
 
+    # v2 批量提取 prompt（与 SCOPE_EXTRACTION_PROMPT 字段完全一致，仅封装为数组格式）
+    _BATCH_EXTRACT_PROMPT_V2 = """\
+Extract structured scope predicates from the following {n} medical text passages.
+For each passage apply the same rules as single-passage extraction.
+
+{passages}
+
+Return ONLY a valid JSON array with exactly {n} objects in order.
+Each object must have ALL of these fields:
+[
+  {{
+    "chunk_id": "<id from above>",
+    "recommended_action": "<primary drug or treatment, or 'none' if absent>",
+    "population": "<natural language description of who this treatment is for>",
+    "polarity": "<one of: recommended | contraindicated | caution | dose_adjustment | not_applicable>",
+    "scope_inclusion": ["<population characteristic that IS included>"],
+    "scope_exclusion": ["<population characteristic that is EXCLUDED, e.g. 'pregnancy', 'penicillin allergy'>"],
+    "contraindications": ["<explicit contraindication description>"],
+    "relative_restrictions": [{{"condition": "<e.g. renal impairment>", "threshold": "<e.g. eGFR < 30>"}}],
+    "scope_status": "<one of: explicit | inferred | not_specified>"
+  }},
+  ...
+]
+
+Polarity rules:
+  recommended:    The text positively recommends this action for the stated population.
+  contraindicated: The text states this action is contraindicated / should be avoided.
+  caution:        The text recommends with significant caveats or warns of risks.
+  dose_adjustment: The text requires dose modification for certain populations.
+  not_applicable: The text does not make a specific treatment recommendation.
+
+Scope status rules:
+  explicit:      The text explicitly states who the treatment is (or is not) for.
+  inferred:      The scope can be reasonably inferred from context.
+  not_specified: The text mentions a treatment but does not state its applicability scope.
+
+CRITICAL RULES:
+  1. scope_status="not_specified" does NOT mean "no contraindications".
+  2. Do NOT populate scope_inclusion or scope_exclusion if the text does not mention them.
+  3. Use "contraindicated" polarity only when the text explicitly states contraindication.
+
+Return ONLY the JSON array, no other text."""
+
     def _batch_extract_and_cache(self, retrieval_results: List[RetrievalResult]) -> None:
         """
-        对多个 cache-miss 文档批量提取 π_d，写入磁盘缓存。
+        对多个 cache-miss 文档批量提取 π_d（v2格式），写入磁盘缓存。
 
-        策略：将文档切分为 _BATCH_SIZE 大小的批次，每批一次 LLM 调用，
-        相比逐文档提取将调用次数从 N 降至 ceil(N/_BATCH_SIZE)。
+        策略：将文档切分为 _BATCH_SIZE 大小的批次，每批一次 LLM 调用。
+        使用 v2 batch prompt（含 polarity/scope_inclusion/scope_exclusion/scope_status），
+        与 _extract_scope_predicate 的 SCOPE_EXTRACTION_PROMPT 字段完全对齐。
 
         参数：
             retrieval_results: 需要 LLM 提取的文档列表（均为 cache-miss）
@@ -245,37 +311,18 @@ class KappaScorer:
         cache_dir = self._cache_dir / "scope_predicates"
         cache_dir.mkdir(parents=True, exist_ok=True)
 
-        batch_prompt_template = """\
-Extract scope predicates from the following {n} medical text passages.
-For each passage, identify the treatment recommended and any contraindications.
-
-{passages}
-
-Return a JSON array with exactly {n} objects in order:
-[
-  {{
-    "chunk_id": "<id from above>",
-    "recommended_action": "<primary drug or treatment, or 'none'>",
-    "population": "<who this treatment is for>",
-    "contraindications": ["<contraindication 1>", "..."],
-    "relative_restrictions": [{{"condition": "...", "threshold": "..."}}]
-  }},
-  ...
-]
-Return ONLY the JSON array, no other text."""
-
         for i in range(0, len(retrieval_results), self._BATCH_SIZE):
             batch = retrieval_results[i: i + self._BATCH_SIZE]
 
-            # 构造批量 prompt（每个文档截取前 400 字符，防止超出上下文）
+            # 构造批量 prompt（每个文档截取前 600 字符，v2 需要更多上下文判断 polarity）
             passages_parts = []
             for j, rr in enumerate(batch):
                 passages_parts.append(
-                    f"Passage {j+1} (chunk_id: {rr.chunk.chunk_id}):\n{rr.chunk.text[:400]}"
+                    f"Passage {j+1} (chunk_id: {rr.chunk.chunk_id}):\n{rr.chunk.text[:600]}"
                 )
             passages_text = "\n\n".join(passages_parts)
 
-            prompt = batch_prompt_template.format(
+            prompt = self._BATCH_EXTRACT_PROMPT_V2.format(
                 n=len(batch),
                 passages=passages_text,
             )
@@ -285,7 +332,7 @@ Return ONLY the JSON array, no other text."""
                 max_tokens=32000,
             )
 
-            # 解析并缓存每个 π_d
+            # 解析 JSON 数组
             try:
                 json_str = raw
                 if "```" in raw:
@@ -296,42 +343,29 @@ Return ONLY the JSON array, no other text."""
                     json_str = raw[start:end].strip()
                 items: List[dict] = json.loads(json_str)
             except (json.JSONDecodeError, ValueError):
-                # 批量解析失败：退回逐文档模式
+                # 批量解析失败：退回逐文档模式（_extract_scope_predicate 使用 v2 prompt）
                 for rr in batch:
                     try:
                         pred = self._extract_scope_predicate(rr.chunk)
-                        data = {
-                            "chunk_id": pred.chunk_id,
-                            "recommended_action": pred.recommended_action,
-                            "population": pred.population,
-                            "contraindications": pred.contraindications,
-                            "relative_restrictions": pred.relative_restrictions,
-                            "extraction_model": pred.extraction_model,
-                            "raw_output": pred.raw_output,
-                        }
                         (cache_dir / f"{pred.chunk_id}.json").write_text(
-                            json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8"
+                            json.dumps(self._scope_predicate_to_cache_dict(pred),
+                                       ensure_ascii=False, indent=2),
+                            encoding="utf-8",
                         )
                     except Exception:
                         pass
                 continue
 
-            # 将批量结果写入缓存
+            # 将批量结果以 v2 格式写入缓存
             for item in items:
                 cid = item.get("chunk_id", "")
                 if not cid:
                     continue
-                data = {
-                    "chunk_id": cid,
-                    "recommended_action": item.get("recommended_action", "none"),
-                    "population": item.get("population", ""),
-                    "contraindications": item.get("contraindications", []),
-                    "relative_restrictions": item.get("relative_restrictions", []),
-                    "extraction_model": self._model,
-                    "raw_output": raw,
-                }
+                pred = self._parse_scope_predicate_from_dict(item, cid, raw)
                 (cache_dir / f"{cid}.json").write_text(
-                    json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8"
+                    json.dumps(self._scope_predicate_to_cache_dict(pred),
+                               ensure_ascii=False, indent=2),
+                    encoding="utf-8",
                 )
 
     def compute_kappa(
@@ -466,26 +500,60 @@ Return ONLY the JSON array, no other text."""
         constraints: List[PatientConstraint],
     ) -> Tuple[float, str]:
         """
-        LLM 层：基于 π_d 的 contraindications 列表计算 κ。
+        LLM 层：基于 π_d 结构化 scope 计算 κ。
 
-        产品规则：∏_i κ_single(c_i, π_d)
+        判断顺序（优先级从高到低）：
+          1. Hard gate：polarity=contraindicated → κ=0（不可补偿）
+          2. scope_exclusion 蕴含判断：患者约束 target 命中 scope_exclusion → κ=0
+          3. contraindications 后向兼容匹配
+          4. 绝对禁忌规则反向检查（推荐 action 属于患者禁忌类别）
+          5. 相对禁忌：f(δ) 连续值计算
+
+        κ 组合规则：乘积形式（任意 0 → 整体为 0）
         """
+        # ── Hard gate：文档本身被标注为 contraindicated（polarity 级别判断）──
+        # scope_status="not_specified" 的文档不触发此 gate
+        if scope_pred.is_hard_contraindicated:
+            return 0.0, "INADMISSIBLE_ABS"
+
         kappa_product = 1.0
         worst_status = "ADMISSIBLE"
+
+        # ── scope_status="not_specified" 的保守降权 ───────────────────────────
+        # 未声明适用域的文档：既不确认适用，也不确认排除，保守默认降权到 0.5
+        # 而非兜底为 κ=1（即"默认适用于所有人"）
+        if scope_pred.scope_status == "not_specified" and constraints:
+            kappa_product = min(kappa_product, 0.5)
+            worst_status = "UNKNOWN"
 
         for constraint in constraints:
             c_target = constraint.target_action.lower()
 
             if constraint.constraint_type == "ABSOLUTE":
-                # 检查患者约束 target 是否在文档禁忌证列表中的 action 所属药物族
+                # 第一层：scope_exclusion 蕴含判断
+                # "患者约束的 target 是否出现在文档的排除人群特征中"
+                for excl in scope_pred.scope_exclusion:
+                    excl_lower = excl.lower()
+                    if c_target in excl_lower or excl_lower in c_target:
+                        kappa_product = 0.0
+                        worst_status = "INADMISSIBLE_ABS"
+                        break
+
+                if kappa_product == 0.0:
+                    break
+
+                # 第二层：contraindications 列表（后向兼容旧缓存）
                 for ci in scope_pred.contraindications:
                     ci_lower = ci.lower()
-                    # 宽松匹配：患者约束目标在禁忌证描述中出现
                     if c_target in ci_lower:
                         kappa_product = 0.0
                         worst_status = "INADMISSIBLE_ABS"
                         break
-                # 反向：文档推荐的 action 属于患者绝对禁忌的药物族
+
+                if kappa_product == 0.0:
+                    break
+
+                # 第三层：绝对禁忌规则反向检查（推荐 action 属于患者禁忌类别）
                 action_lower = scope_pred.recommended_action.lower()
                 for (rule_c, rule_a) in self._abs_rule_set:
                     if rule_c in c_target and rule_a in action_lower:
@@ -494,7 +562,7 @@ Return ONLY the JSON array, no other text."""
                         break
 
             elif constraint.constraint_type == "RELATIVE":
-                # 相对禁忌：直接用 PatientConstraint.compute_kappa_single()
+                # 相对禁忌：连续 f(δ) 计算
                 k_single = constraint.compute_kappa_single()
                 if k_single < kappa_product:
                     kappa_product = k_single
@@ -502,29 +570,111 @@ Return ONLY the JSON array, no other text."""
 
         return kappa_product, worst_status
 
+    # polarity 合法值集合（用于校验 LLM 输出）
+    _VALID_POLARITY = frozenset(
+        ["recommended", "contraindicated", "caution", "dose_adjustment", "not_applicable"]
+    )
+    _VALID_SCOPE_STATUS = frozenset(["explicit", "inferred", "not_specified"])
+
+    def _parse_scope_predicate_from_dict(
+        self, data: Dict, chunk_id: str, raw_output: str
+    ) -> ScopePredicate:
+        """
+        从 LLM 输出的 dict 构造 ScopePredicate（v2 格式，含 polarity/scope/status）。
+
+        参数：
+            data:       已解析的 JSON dict
+            chunk_id:   文本块 ID（用于错误信息）
+            raw_output: LLM 原始文本（存入 raw_output 字段）
+
+        返回：
+            ScopePredicate（v2）
+
+        校验：
+            polarity / scope_status 非法值 → 降级为默认值并记录警告（不抛出，
+            因为该字段对 κ=0 的 hard gate 判断不是必须的）
+        """
+        raw_polarity = data.get("polarity", "not_applicable")
+        polarity = (
+            raw_polarity if raw_polarity in self._VALID_POLARITY else "not_applicable"
+        )
+        raw_status = data.get("scope_status", "not_specified")
+        scope_status = (
+            raw_status if raw_status in self._VALID_SCOPE_STATUS else "not_specified"
+        )
+
+        return ScopePredicate(
+            chunk_id=chunk_id,
+            recommended_action=data.get("recommended_action", "none"),
+            population=data.get("population", ""),
+            contraindications=data.get("contraindications", []),
+            relative_restrictions=data.get("relative_restrictions", []),
+            extraction_model=self._model,
+            raw_output=raw_output,
+            polarity=polarity,  # type: ignore[arg-type]
+            scope_inclusion=data.get("scope_inclusion", []),
+            scope_exclusion=data.get("scope_exclusion", []),
+            scope_status=scope_status,  # type: ignore[arg-type]
+        )
+
+    def _scope_predicate_to_cache_dict(self, pred: ScopePredicate) -> Dict:
+        """将 ScopePredicate（v2）序列化为缓存 dict（含新字段）"""
+        return {
+            "chunk_id":              pred.chunk_id,
+            "recommended_action":    pred.recommended_action,
+            "population":            pred.population,
+            "contraindications":     pred.contraindications,
+            "relative_restrictions": pred.relative_restrictions,
+            "extraction_model":      pred.extraction_model,
+            "raw_output":            pred.raw_output,
+            # v2 新字段
+            "polarity":              pred.polarity,
+            "scope_inclusion":       pred.scope_inclusion,
+            "scope_exclusion":       pred.scope_exclusion,
+            "scope_status":          pred.scope_status,
+        }
+
+    def _scope_predicate_from_cache_dict(self, data: Dict) -> ScopePredicate:
+        """
+        从缓存 dict 恢复 ScopePredicate（兼容 v1 旧缓存，缺失字段用默认值补全）。
+
+        v1 旧缓存没有 polarity/scope_inclusion/scope_exclusion/scope_status 字段，
+        恢复时补为默认值（not_applicable / [] / [] / not_specified），不抛出异常。
+        """
+        raw_polarity = data.get("polarity", "not_applicable")
+        polarity = raw_polarity if raw_polarity in self._VALID_POLARITY else "not_applicable"
+        raw_status = data.get("scope_status", "not_specified")
+        scope_status = raw_status if raw_status in self._VALID_SCOPE_STATUS else "not_specified"
+        return ScopePredicate(
+            chunk_id=data["chunk_id"],
+            recommended_action=data["recommended_action"],
+            population=data["population"],
+            contraindications=data["contraindications"],
+            relative_restrictions=data["relative_restrictions"],
+            extraction_model=data["extraction_model"],
+            raw_output=data["raw_output"],
+            polarity=polarity,  # type: ignore[arg-type]
+            scope_inclusion=data.get("scope_inclusion", []),
+            scope_exclusion=data.get("scope_exclusion", []),
+            scope_status=scope_status,  # type: ignore[arg-type]
+        )
+
     def _get_or_extract_scope_predicate(self, chunk: TextChunk) -> ScopePredicate:
         """
-        获取或提取文本块的 π_d。
+        获取或提取文本块的 π_d（v2）。
 
-        优先从缓存读取；缓存未命中时调用 LLM 提取并写入缓存。
+        优先从缓存读取（支持 v1 旧缓存自动升级）；
+        缓存未命中时调用 LLM 提取并写入缓存。
 
         异常：
             ValueError: LLM 输出格式非法（不兜底）
         """
-        # 第一步：检查缓存
+        # 第一步：检查缓存（v1/v2 兼容读取）
         if self._cache_dir:
             cache_path = self._cache_dir / "scope_predicates" / f"{chunk.chunk_id}.json"
             if cache_path.exists():
                 data = json.loads(cache_path.read_text(encoding="utf-8"))
-                return ScopePredicate(
-                    chunk_id=data["chunk_id"],
-                    recommended_action=data["recommended_action"],
-                    population=data["population"],
-                    contraindications=data["contraindications"],
-                    relative_restrictions=data["relative_restrictions"],
-                    extraction_model=data["extraction_model"],
-                    raw_output=data["raw_output"],
-                )
+                return self._scope_predicate_from_cache_dict(data)
 
         # 第二步：LLM 提取
         if self._client is None:
@@ -536,17 +686,10 @@ Return ONLY the JSON array, no other text."""
 
         # 第三步：写入缓存
         if self._cache_dir:
-            data = {
-                "chunk_id":             scope_pred.chunk_id,
-                "recommended_action":   scope_pred.recommended_action,
-                "population":           scope_pred.population,
-                "contraindications":    scope_pred.contraindications,
-                "relative_restrictions": scope_pred.relative_restrictions,
-                "extraction_model":     scope_pred.extraction_model,
-                "raw_output":           scope_pred.raw_output,
-            }
+            cache_path = self._cache_dir / "scope_predicates" / f"{chunk.chunk_id}.json"
             cache_path.write_text(
-                json.dumps(data, ensure_ascii=False, indent=2),
+                json.dumps(self._scope_predicate_to_cache_dict(scope_pred),
+                           ensure_ascii=False, indent=2),
                 encoding="utf-8",
             )
 
@@ -554,7 +697,7 @@ Return ONLY the JSON array, no other text."""
 
     def _extract_scope_predicate(self, chunk: TextChunk) -> ScopePredicate:
         """
-        调用 LLM 从文本块中提取 π_d。
+        调用 LLM 从文本块中提取 π_d（v2，含 polarity/scope/status）。
 
         异常：
             ValueError: JSON 格式非法（不兜底）
@@ -565,17 +708,15 @@ Return ONLY the JSON array, no other text."""
             max_tokens=32000,
         )
 
-        # 解析 JSON（失败直接抛出，不兜底）
         if not raw_output:
             raise ValueError(
-                f"[KappaScorer] π_d 提取 LLM 返回空响应（推理模型 token 耗尽）。"
-                f"  chunk_id: {chunk.chunk_id}"
+                f"[KappaScorer] π_d 提取 LLM 返回空响应。chunk_id: {chunk.chunk_id}"
             )
 
         json_str = raw_output
         if "```" in raw_output:
             start = raw_output.index("```") + 3
-            if "json" in raw_output[start:start+4]:
+            if "json" in raw_output[start:start + 4]:
                 start += 4
             end = raw_output.rindex("```")
             json_str = raw_output[start:end].strip()
@@ -590,12 +731,4 @@ Return ONLY the JSON array, no other text."""
                 f"  解析错误: {e}"
             )
 
-        return ScopePredicate(
-            chunk_id=chunk.chunk_id,
-            recommended_action=data.get("recommended_action", "unknown"),
-            population=data.get("population", ""),
-            contraindications=data.get("contraindications", []),
-            relative_restrictions=data.get("relative_restrictions", []),
-            extraction_model=self._model,
-            raw_output=raw_output,
-        )
+        return self._parse_scope_predicate_from_dict(data, chunk.chunk_id, raw_output)

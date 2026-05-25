@@ -29,13 +29,20 @@ class BaseRAGSystem(ABC):
         """系统名称（用于结果报告和文件命名）"""
 
     @abstractmethod
-    def run(self, query: str, sample_id: str) -> SampleResult:
+    def run(
+        self,
+        query: str,
+        sample_id: str,
+        patient_profile: Optional[Dict[str, Any]] = None,
+    ) -> SampleResult:
         """
         对单个 query 执行推理，返回结构化结果。
 
         参数：
-            query:      输入查询（MedQA question 文本 + 选项文本）
-            sample_id:  样本 ID（MACB-001 格式，用于日志追踪）
+            query:           输入查询（MedQA question 文本 + 选项文本）
+            sample_id:       样本 ID（MACB-001 格式，用于日志追踪）
+            patient_profile: 结构化患者 profile（可选）；MARC 系统用于 Module 0
+                             约束提取，其他系统可忽略。
 
         返回：
             SampleResult（含预测答案、per_action_status、attribution 等）

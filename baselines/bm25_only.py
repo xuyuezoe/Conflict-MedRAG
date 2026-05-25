@@ -70,7 +70,7 @@ class BM25OnlyRAG(BaseRAGSystem):
     def system_name(self) -> str:
         return "bm25_only"
 
-    def run(self, query: str, sample_id: str) -> SampleResult:
+    def run(self, query: str, sample_id: str, patient_profile=None) -> SampleResult:
         """
         BM25-Only RAG 推理流程。
 

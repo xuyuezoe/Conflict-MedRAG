@@ -42,7 +42,8 @@ class ExperimentConfig:
 
     # ── 实验控制 ────────────────────────────────────────────────────────────
     systems_to_run: List[str] = field(default_factory=lambda: [
-        "marc",          # 完整 MARC 系统
+        "marc",          # 完整 MARC 系统（FC 默认关闭）
+        "marc_with_fc",  # MARC + FC 冲突仲裁（enable_fc=True）
         "marc_no_dcr",   # 消融：无 DCR（有 SCOPE BIAS WARNING，无 κ 过滤）
         "marc_no_scsr",  # 消融：无 SCSR（有 DCR，无 Stage 3 gap-filling）
         "standard_rag",  # Baseline：标准混合 RAG
@@ -67,7 +68,7 @@ class ExperimentConfig:
                 f"请先运行 python3 scripts/index_textbooks.py。"
             )
         valid_systems = {
-            "marc", "marc_no_dcr", "marc_no_scsr",
+            "marc", "marc_with_fc", "marc_no_dcr", "marc_no_scsr",
             "standard_rag", "bm25_only", "dense_only",
             "no_retrieval", "picos_rag",
         }

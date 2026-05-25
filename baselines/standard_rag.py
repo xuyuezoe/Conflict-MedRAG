@@ -60,7 +60,7 @@ class StandardRAG(BaseRAGSystem):
     def system_name(self) -> str:
         return "standard_rag"
 
-    def run(self, query: str, sample_id: str) -> SampleResult:
+    def run(self, query: str, sample_id: str, patient_profile=None) -> SampleResult:
         """
         标准 RAG 推理流程。
 

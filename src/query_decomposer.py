@@ -31,7 +31,7 @@ from src.types import PatientConstraint, QueryDecomposition
 
 DECOMPOSE_SYSTEM_PROMPT = """\
 You are a medical information extractor. Your task is to decompose a medical \
-clinical query into two orthogonal components:
+clinical query into three orthogonal components:
 
 1. disease_query: A simplified query describing only the disease/condition \
    and seeking standard treatment, WITHOUT any patient-specific constraints \
@@ -40,9 +40,18 @@ clinical query into two orthogonal components:
 2. constraints: A list of patient-specific constraints that may affect which \
    treatments are admissible for this particular patient.
 
+3. candidate_actions: A list of treatment actions (drug names or treatment names) \
+   explicitly mentioned in the query as candidates. These are the specific treatments \
+   the query is asking about. Leave empty if no specific treatments are mentioned.
+
+IMPORTANT: Constraints are action-specific, not disease-specific. A constraint like
+"pregnancy" does not change what the disease IS, it changes WHICH treatment actions
+are admissible. Always identify which specific actions a constraint applies to.
+
 Return ONLY valid JSON in this exact format:
 {
   "disease_query": "standard treatment for <condition>",
+  "candidate_actions": ["<drug1>", "<drug2>"],
   "constraints": [
     {
       "type": "ABSOLUTE",
@@ -68,6 +77,7 @@ Constraint types:
   Use NONE sparingly; only when a characteristic is explicitly non-constraining.
 
 If no constraints exist, return "constraints": [].
+If no specific treatment candidates are mentioned, return "candidate_actions": [].
 Do not add constraints not mentioned in the query.
 """
 
@@ -76,6 +86,39 @@ Medical query:
 {query}
 
 Decompose this into disease_query and constraints as specified."""
+
+# 仅当 patient_profile 可用时追加此段；只使用生理性字段，不使用临床表现字段
+# 注意：只提取药理学约束（类型1冲突），不提取临床指征约束（类型2由Generator处理）
+DECOMPOSE_PROFILE_ADDENDUM = """\
+
+
+STRUCTURED PATIENT PROFILE (authoritative supplement for pharmacological constraint extraction):
+{profile_json}
+
+Use BOTH the narrative query AND the profile above to identify PHARMACOLOGICAL constraints only.
+The profile provides authoritative patient-specific physiological facts:
+
+- allergies list → ABSOLUTE constraints: target_action = the specific allergen drug or drug class.
+  Example: allergy to penicillin → ABSOLUTE, target_action="penicillin"
+
+- pregnancy=true → ABSOLUTE constraints for established teratogens and pregnancy-contraindicated drugs.
+  Only generate constraints for drug classes that are plausible treatment candidates given the query context.
+  Known pregnancy-contraindicated drug classes to consider:
+  warfarin, isotretinoin, thalidomide, methotrexate, tetracycline, doxycycline,
+  fluoroquinolone, ciprofloxacin, levofloxacin, ACE inhibitor, valproic acid, carbamazepine.
+  target_action = the specific drug or drug class name (e.g. "warfarin", "tetracycline").
+
+- renal_impairment=true → RELATIVE constraints for renally-cleared drugs mentioned in the query.
+  Include parameter_value and parameter_threshold if lab values are present (e.g. eGFR=28).
+
+- hepatic_impairment=true → RELATIVE constraints for hepatically-metabolized drugs mentioned in query.
+
+The narrative query may also state explicit pharmacological constraints (e.g. "allergic to X",
+"X is contraindicated", "cannot use X due to renal function").
+Do NOT invent constraints for drug classes absent from both the query and the profile.
+Do NOT extract clinical-indication constraints (e.g. "procedure not indicated at this gestational age") —
+these are handled by the Generator stage.
+"""
 
 
 # ── 主类 ─────────────────────────────────────────────────────────────────────
@@ -112,12 +155,19 @@ class QueryDecomposer:
         if cache_dir:
             (cache_dir / "decompositions").mkdir(parents=True, exist_ok=True)
 
-    def decompose(self, query: str) -> QueryDecomposition:
+    def decompose(
+        self,
+        query: str,
+        patient_profile: Optional[Dict[str, Any]] = None,
+    ) -> QueryDecomposition:
         """
         将自然语言 query 分解为 (D_q, C_q)。
 
         参数：
-            query: 原始自然语言医学查询（含疾病描述+患者约束）
+            query:           原始自然语言医学查询（含疾病描述+患者约束）
+            patient_profile: 结构化患者 profile（可选）；若提供，从中提取生理约束，
+                             比纯叙事文本提取更精确，避免隐式约束遗漏。
+                             只使用 allergies/pregnancy/renal_impairment/hepatic_impairment 字段。
 
         返回：
             QueryDecomposition（含 disease_query 和 constraints 列表）
@@ -126,31 +176,63 @@ class QueryDecomposer:
             ValueError:  LLM 输出不符合预期 JSON 格式（不兜底，直接抛出）
             anthropic.APIError: API 调用失败
         """
-        # 第一步：检查缓存
-        cached = self._load_cache(query)
+        # 第一步：检查缓存（缓存键包含 profile 哈希，不同 profile 不共享缓存）
+        cached = self._load_cache(query, patient_profile)
         if cached is not None:
             return cached
 
         # 第二步：调用 LLM 分解
-        raw_output = self._call_llm(query)
+        raw_output = self._call_llm(query, patient_profile)
 
         # 第三步：解析 JSON（失败则抛出，不兜底）
         decomposition = self._parse_output(query, raw_output)
 
         # 第四步：写入缓存
-        self._save_cache(query, decomposition)
+        self._save_cache(query, decomposition, patient_profile)
 
         return decomposition
 
-    def _call_llm(self, query: str) -> str:
+    def _build_profile_json(
+        self, patient_profile: Optional[Dict[str, Any]]
+    ) -> Optional[str]:
+        """
+        从 patient_profile 中提取生理约束字段，序列化为 JSON 字符串。
+
+        只使用以下字段（生理性约束，可靠地映射为 PatientConstraint）：
+          allergies, pregnancy, renal_impairment, hepatic_impairment
+
+        忽略 other_constraints（临床表现，语义模糊，易引发误提取）。
+        """
+        if not patient_profile:
+            return None
+        relevant = {
+            k: patient_profile.get(k)
+            for k in ("allergies", "pregnancy", "renal_impairment", "hepatic_impairment")
+        }
+        # 所有字段均为 null 或空列表时无需附加 profile
+        has_content = any(
+            v not in (None, [], False)
+            for v in relevant.values()
+        )
+        if not has_content:
+            return None
+        return json.dumps(relevant, ensure_ascii=False, indent=2)
+
+    def _call_llm(
+        self,
+        query: str,
+        patient_profile: Optional[Dict[str, Any]] = None,
+    ) -> str:
         """
         调用 LLM 执行分解，返回原始文本响应。
+        若提供 patient_profile，在用户消息末尾追加结构化 profile 段。
         """
+        user_content = DECOMPOSE_USER_TEMPLATE.format(query=query)
+        profile_json = self._build_profile_json(patient_profile)
+        if profile_json:
+            user_content += DECOMPOSE_PROFILE_ADDENDUM.format(profile_json=profile_json)
         return self._client.chat(
-            messages=[{
-                "role": "user",
-                "content": DECOMPOSE_USER_TEMPLATE.format(query=query),
-            }],
+            messages=[{"role": "user", "content": user_content}],
             max_tokens=32000,
             system=DECOMPOSE_SYSTEM_PROMPT,
         )
@@ -235,18 +317,23 @@ class QueryDecomposer:
             if ctype == "RELATIVE":
                 raw_val = c.get("parameter_value")
                 raw_thr = c.get("parameter_threshold")
-                if raw_val is None or raw_thr is None:
-                    raise ValueError(
-                        f"[QueryDecomposer] RELATIVE 约束[{i}] 缺少 parameter_value "
-                        f"或 parameter_threshold。约束: {c}"
-                    )
-                try:
-                    param_val = float(raw_val)
-                    param_thr = float(raw_thr)
-                except (TypeError, ValueError) as e:
-                    raise ValueError(
-                        f"[QueryDecomposer] RELATIVE 约束[{i}] 参数值类型错误: {e}"
-                    )
+                # parameter_value / parameter_threshold 为可选增强字段：
+                # LLM 有时只能提取定性描述（如"elevated AST/ALT"）而无数值，
+                # KappaScorer 回退到 raw_text 级别评估，不应因此丢弃整条约束。
+                if raw_val is not None:
+                    try:
+                        param_val = float(raw_val)
+                    except (TypeError, ValueError) as e:
+                        raise ValueError(
+                            f"[QueryDecomposer] RELATIVE 约束[{i}] parameter_value 类型错误: {e}，约束: {c}"
+                        )
+                if raw_thr is not None:
+                    try:
+                        param_thr = float(raw_thr)
+                    except (TypeError, ValueError) as e:
+                        raise ValueError(
+                            f"[QueryDecomposer] RELATIVE 约束[{i}] parameter_threshold 类型错误: {e}，约束: {c}"
+                        )
 
             constraints.append(PatientConstraint(
                 constraint_type=ctype,  # type: ignore[arg-type]
@@ -256,26 +343,48 @@ class QueryDecomposer:
                 parameter_threshold=param_thr,
             ))
 
+        # 解析 candidate_actions（可选字段，不存在时返回空列表）
+        raw_actions = data.get("candidate_actions", [])
+        candidate_actions: List[str] = []
+        if isinstance(raw_actions, list):
+            candidate_actions = [
+                a.strip().lower() for a in raw_actions
+                if isinstance(a, str) and a.strip()
+            ]
+
         return QueryDecomposition(
             original_query=original_query,
             disease_query=data["disease_query"].strip(),
             constraints=constraints,
             decompose_model=self._model,
+            candidate_actions=candidate_actions,
             debug={"raw_llm_output": raw_output},
         )
 
-    def _cache_key(self, query: str) -> str:
-        """生成 query 的 MD5 缓存键"""
-        return hashlib.md5(query.encode("utf-8")).hexdigest()
+    def _cache_key(
+        self,
+        query: str,
+        patient_profile: Optional[Dict[str, Any]] = None,
+    ) -> str:
+        """
+        生成缓存键（MD5）。
+        包含 profile 的生理约束字段哈希，确保不同 profile 不共享缓存。
+        """
+        profile_json = self._build_profile_json(patient_profile) or ""
+        return hashlib.md5((query + "|" + profile_json).encode("utf-8")).hexdigest()
 
-    def _load_cache(self, query: str) -> Optional[QueryDecomposition]:
+    def _load_cache(
+        self,
+        query: str,
+        patient_profile: Optional[Dict[str, Any]] = None,
+    ) -> Optional[QueryDecomposition]:
         """
         从磁盘加载缓存的分解结果。
         缓存未命中时返回 None（不抛出异常）。
         """
         if self._cache_dir is None:
             return None
-        cache_file = self._cache_dir / "decompositions" / f"{self._cache_key(query)}.json"
+        cache_file = self._cache_dir / "decompositions" / f"{self._cache_key(query, patient_profile)}.json"
         if not cache_file.exists():
             return None
 
@@ -295,17 +404,25 @@ class QueryDecomposer:
             disease_query=data["disease_query"],
             constraints=constraints,
             decompose_model=data["decompose_model"],
+            # 向后兼容：旧缓存没有 candidate_actions 字段
+            candidate_actions=data.get("candidate_actions", []),
             debug=data.get("debug", {}),
         )
 
-    def _save_cache(self, query: str, decomp: QueryDecomposition) -> None:
+    def _save_cache(
+        self,
+        query: str,
+        decomp: QueryDecomposition,
+        patient_profile: Optional[Dict[str, Any]] = None,
+    ) -> None:
         """将分解结果写入磁盘缓存"""
         if self._cache_dir is None:
             return
-        cache_file = self._cache_dir / "decompositions" / f"{self._cache_key(query)}.json"
+        cache_file = self._cache_dir / "decompositions" / f"{self._cache_key(query, patient_profile)}.json"
         data = {
             "original_query": decomp.original_query,
             "disease_query": decomp.disease_query,
+            "candidate_actions": decomp.candidate_actions,
             "constraints": [
                 {
                     "constraint_type": c.constraint_type,

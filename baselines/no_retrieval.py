@@ -48,7 +48,7 @@ class NoRetrievalBaseline(BaseRAGSystem):
     def system_name(self) -> str:
         return "no_retrieval"
 
-    def run(self, query: str, sample_id: str) -> SampleResult:
+    def run(self, query: str, sample_id: str, patient_profile=None) -> SampleResult:
         """
         直接 LLM 推理（无检索步骤）。
         """

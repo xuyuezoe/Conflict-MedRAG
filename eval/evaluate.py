@@ -26,7 +26,11 @@ from typing import List, Optional
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from baselines.base import BaseRAGSystem
-from eval.metrics import compute_all_metrics, compute_crr, compute_sdr, compute_aec, compute_slr_from_result
+from eval.metrics import (
+    compute_all_metrics,
+    compute_crr, compute_sdr, compute_aec, compute_slr_from_result,
+    compute_cdr_metric, compute_rsi_metric, compute_caec,
+)
 from src.types import EvalSample, SampleResult
 from src.run_logger import RunLogger
 
@@ -137,7 +141,11 @@ def evaluate_system(
             print(f"  [{i}/{len(samples)}] {sample.sample_id} ({sample.candidate_tag})", end="", flush=True)
             t0 = time.time()
             try:
-                result = system.run(query=query, sample_id=sample.sample_id)
+                result = system.run(
+                    query=query,
+                    sample_id=sample.sample_id,
+                    patient_profile=sample.patient_profile,
+                )
                 latency = time.time() - t0
                 print(f" ✓ ({latency:.1f}s)")
                 results.append(result)
@@ -145,10 +153,13 @@ def evaluate_system(
                 # ── RunLogger：计算 per-sample 指标并写详细日志 ────────────────
                 if logger is not None:
                     per_m = {
-                        "crr": compute_crr(result, sample),
-                        "sdr": compute_sdr(result, sample),
-                        "aec": compute_aec(result, sample),
-                        "slr": compute_slr_from_result(result),
+                        "crr":  compute_crr(result, sample),
+                        "sdr":  compute_sdr(result, sample),
+                        "aec":  compute_aec(result, sample),
+                        "slr":  compute_slr_from_result(result),
+                        "cdr":  compute_cdr_metric(result),
+                        "rsi":  compute_rsi_metric(result),
+                        "caec": compute_caec(result, sample),
                     }
                     logger.log_sample(result, sample, per_m, latency)
 
@@ -204,10 +215,15 @@ def evaluate_system(
         logger.finalize(metric_summary)
 
     print(f"\n  [结果] 写出 → {report_path}")
-    print(f"  CRR: {metric_summary['CRR']['mean']:.4f} ({metric_summary['CRR']['n']} 个样本)")
-    print(f"  SDR: {metric_summary['SDR']['mean']:.4f} ({metric_summary['SDR']['n']} 个样本)")
-    print(f"  AEC: {metric_summary['AEC']['mean']:.4f} ({metric_summary['AEC']['n']} 个样本)")
-    print(f"  SLR: {metric_summary['SLR']['mean']:.4f} ({metric_summary['SLR']['n']} 个样本)")
+    print(f"  CRR:  {metric_summary['CRR']['mean']:.4f} ({metric_summary['CRR']['n']} 个样本)")
+    print(f"  SDR:  {metric_summary['SDR']['mean']:.4f} ({metric_summary['SDR']['n']} 个样本)")
+    print(f"  AEC:  {metric_summary['AEC']['mean']:.4f} ({metric_summary['AEC']['n']} 个样本)")
+    print(f"  SLR:  {metric_summary['SLR']['mean']:.4f} ({metric_summary['SLR']['n']} 个样本)")
+    # CDR/RSI/CAEC 仅在 ScopeIndex 已加载时有值
+    if metric_summary['CDR']['n'] > 0:
+        print(f"  CDR:  {metric_summary['CDR']['mean']:.4f} ({metric_summary['CDR']['n']} 个样本) [scope index]")
+        print(f"  RSI:  {metric_summary['RSI']['mean']:.4f} ({metric_summary['RSI']['n']} 个样本) [scope index]")
+        print(f"  CAEC: {metric_summary['CAEC']['mean']:.4f} ({metric_summary['CAEC']['n']} 个样本) [scope index]")
 
     if errors:
         print(f"  警告：{len(errors)} 个样本运行失败（见 {report_path}）")
