@@ -30,95 +30,76 @@ from src.types import PatientConstraint, QueryDecomposition
 # ── Prompt 模板 ───────────────────────────────────────────────────────────────
 
 DECOMPOSE_SYSTEM_PROMPT = """\
-You are a medical information extractor. Your task is to decompose a medical \
-clinical query into three orthogonal components:
+You are a clinical scope analyst. Decompose a clinical vignette into two orthogonal \
+components used by a scope-aware retrieval system:
 
-1. disease_query: A simplified query describing only the disease/condition \
-   and seeking standard treatment, WITHOUT any patient-specific constraints \
-   (no allergies, no lab values, no contraindications).
+1. disease_query (D): a concise description of the disease/condition that seeks the \
+   STANDARD treatment, with ALL patient-specific constraints removed (no pregnancy, \
+   no organ impairment, no allergy, no comorbidity qualifiers). This is used for \
+   evidence retrieval, so it must describe only the condition.
 
-2. constraints: A list of patient-specific constraints that may affect which \
-   treatments are admissible for this particular patient.
+2. constraints (C): the list of patient-specific facts that make certain treatments \
+   inadmissible or restricted FOR THIS PATIENT. For each constraint, also name the \
+   specific drugs / drug-classes that are contraindicated by that patient state, \
+   using established clinical pharmacology knowledge.
 
-3. candidate_actions: A list of treatment actions (drug names or treatment names) \
-   explicitly mentioned in the query as candidates. These are the specific treatments \
-   the query is asking about. Leave empty if no specific treatments are mentioned.
+You MUST classify each constraint into exactly one category:
+  - PREGNANCY                    (current pregnancy; teratogen contraindications)
+  - LACTATION                    (breastfeeding; drugs unsafe in breast milk)
+  - AGE                          (neonate / infant / pediatric / geriatric dosing or bans)
+  - RENAL_IMPAIRMENT             (reduced eGFR; renally-cleared/nephrotoxic drugs)
+  - HEPATIC_IMPAIRMENT           (liver disease; hepatotoxic/hepatically-cleared drugs)
+  - CARDIAC                      (e.g. heart failure, QT prolongation, arrhythmia bans)
+  - ALLERGY                      (drug allergy / hypersensitivity; the allergen class)
+  - COMORBIDITY_CONTRAINDICATION (a named disease that contraindicates a drug class,
+                                  e.g. Parkinson disease → dopamine antagonists;
+                                  asthma → non-selective beta-blockers; G6PD → oxidants)
+  - DRUG_INTERACTION             (a current medication that contraindicates another drug)
 
-IMPORTANT: Constraints are action-specific, not disease-specific. A constraint like
-"pregnancy" does not change what the disease IS, it changes WHICH treatment actions
-are admissible. Always identify which specific actions a constraint applies to.
-
-Return ONLY valid JSON in this exact format:
+Each constraint object:
 {
-  "disease_query": "standard treatment for <condition>",
-  "candidate_actions": ["<drug1>", "<drug2>"],
-  "constraints": [
-    {
-      "type": "ABSOLUTE",
-      "target_action": "<drug or treatment name>",
-      "text": "<exact text describing the constraint>",
-      "parameter_value": null,
-      "parameter_threshold": null
-    }
-  ]
+  "category": "<one of the categories above>",
+  "constraint_type": "ABSOLUTE" | "RELATIVE",
+  "patient_state": "<the specific patient fact, e.g. 'first-trimester pregnancy', 'eGFR 25 mL/min', 'Parkinson disease'>",
+  "contraindicated_targets": ["<drug or drug-class name>", ...],
+  "parameter_value": <number or null>,
+  "parameter_threshold": <number or null>
 }
 
-Constraint types:
-- ABSOLUTE: Hard contraindication (allergy, pregnancy contraindication, absolute ban)
-  target_action: the specific drug/treatment that is contraindicated
-  parameter_value and parameter_threshold: null
+constraint_type:
+  - ABSOLUTE: a true absolute contraindication (κ=0, the drug must NOT be used).
+  - RELATIVE: requires dose adjustment / caution but not an absolute ban (κ in (0,1)).
+    For RENAL/HEPATIC with a numeric lab, set parameter_value (patient value, e.g. eGFR 25 → 25.0)
+    and parameter_threshold (the safety cutoff, e.g. 30.0). Leave null if no number is stated.
 
-- RELATIVE: Soft constraint requiring dose adjustment (renal/hepatic impairment)
-  target_action: the drug class or treatment requiring adjustment
-  parameter_value: actual patient value (e.g., eGFR=28 → 28.0)
-  parameter_threshold: the safety threshold (e.g., eGFR threshold=60 → 60.0)
+contraindicated_targets RULES:
+  - List specific drug names or recognizable drug-class names (e.g. "warfarin",
+    "methotrexate", "methimazole", "ACE inhibitors", "NSAIDs", "tetracyclines",
+    "dopamine antagonists", "metoclopramide").
+  - Include the well-established contraindicated drugs for this patient state even if
+    they are not explicitly mentioned in the vignette (use medical knowledge).
+  - Do NOT list a drug unless it is genuinely contraindicated/restricted by this state.
 
-- NONE: No constraint (patient characteristics mentioned but do not restrict treatment)
-  Use NONE sparingly; only when a characteristic is explicitly non-constraining.
+STRICT DISCIPLINE (avoid false contraindications):
+  - Only extract constraints that are explicitly supported by facts in the vignette.
+  - When severity is uncertain, prefer RELATIVE over ABSOLUTE (conservative).
+  - Do NOT extract "wrong-treatment-for-this-disease" as a constraint — that is a
+    disease-appropriateness issue, NOT a patient scope constraint. Constraints are
+    about patient state making an otherwise-reasonable drug unsafe.
 
-If no constraints exist, return "constraints": [].
-If no specific treatment candidates are mentioned, return "candidate_actions": [].
-Do not add constraints not mentioned in the query.
+Return ONLY valid JSON:
+{
+  "disease_query": "<standard treatment for the condition, constraint-free>",
+  "constraints": [ ... ]
+}
+If the patient has no scope constraints, return "constraints": [].
 """
 
 DECOMPOSE_USER_TEMPLATE = """\
-Medical query:
+Clinical vignette:
 {query}
 
-Decompose this into disease_query and constraints as specified."""
-
-# 仅当 patient_profile 可用时追加此段；只使用生理性字段，不使用临床表现字段
-# 注意：只提取药理学约束（类型1冲突），不提取临床指征约束（类型2由Generator处理）
-DECOMPOSE_PROFILE_ADDENDUM = """\
-
-
-STRUCTURED PATIENT PROFILE (authoritative supplement for pharmacological constraint extraction):
-{profile_json}
-
-Use BOTH the narrative query AND the profile above to identify PHARMACOLOGICAL constraints only.
-The profile provides authoritative patient-specific physiological facts:
-
-- allergies list → ABSOLUTE constraints: target_action = the specific allergen drug or drug class.
-  Example: allergy to penicillin → ABSOLUTE, target_action="penicillin"
-
-- pregnancy=true → ABSOLUTE constraints for established teratogens and pregnancy-contraindicated drugs.
-  Only generate constraints for drug classes that are plausible treatment candidates given the query context.
-  Known pregnancy-contraindicated drug classes to consider:
-  warfarin, isotretinoin, thalidomide, methotrexate, tetracycline, doxycycline,
-  fluoroquinolone, ciprofloxacin, levofloxacin, ACE inhibitor, valproic acid, carbamazepine.
-  target_action = the specific drug or drug class name (e.g. "warfarin", "tetracycline").
-
-- renal_impairment=true → RELATIVE constraints for renally-cleared drugs mentioned in the query.
-  Include parameter_value and parameter_threshold if lab values are present (e.g. eGFR=28).
-
-- hepatic_impairment=true → RELATIVE constraints for hepatically-metabolized drugs mentioned in query.
-
-The narrative query may also state explicit pharmacological constraints (e.g. "allergic to X",
-"X is contraindicated", "cannot use X due to renal function").
-Do NOT invent constraints for drug classes absent from both the query and the profile.
-Do NOT extract clinical-indication constraints (e.g. "procedure not indicated at this gestational age") —
-these are handled by the Generator stage.
-"""
+Decompose into disease_query (D) and constraints (C) as specified. Return JSON only."""
 
 
 # ── 主类 ─────────────────────────────────────────────────────────────────────
@@ -218,19 +199,31 @@ class QueryDecomposer:
             return None
         return json.dumps(relevant, ensure_ascii=False, indent=2)
 
+    @staticmethod
+    def _strip_options(query: str) -> str:
+        """
+        去除 query 末尾的 MCQ 选项块，只保留临床主诉 stem。
+
+        约束抽取只应基于患者临床事实，不应被候选选项影响（保持 D/C 与选项正交，
+        且使设计可迁移到无结构化 profile 的全量 MedQA）。
+        """
+        if "\n\nOptions: " in query:
+            return query.split("\n\nOptions: ", 1)[0]
+        return query
+
     def _call_llm(
         self,
         query: str,
         patient_profile: Optional[Dict[str, Any]] = None,
     ) -> str:
         """
-        调用 LLM 执行分解，返回原始文本响应。
-        若提供 patient_profile，在用户消息末尾追加结构化 profile 段。
+        调用 LLM 执行全上下文结构化分解，返回原始文本响应。
+
+        输入仅为临床主诉 stem（去除 MCQ 选项），不依赖 patient_profile，
+        以保证设计可迁移到全量 MedQA（无人工标注 profile 的场景）。
         """
-        user_content = DECOMPOSE_USER_TEMPLATE.format(query=query)
-        profile_json = self._build_profile_json(patient_profile)
-        if profile_json:
-            user_content += DECOMPOSE_PROFILE_ADDENDUM.format(profile_json=profile_json)
+        stem = self._strip_options(query)
+        user_content = DECOMPOSE_USER_TEMPLATE.format(query=stem)
         return self._client.chat(
             messages=[{"role": "user", "content": user_content}],
             max_tokens=32000,
@@ -293,33 +286,57 @@ class QueryDecomposer:
                 f"  原始输出: {raw_output[:200]}"
             )
 
-        # 解析约束列表
+        # 合法约束类别枚举
+        valid_categories = {
+            "PREGNANCY", "LACTATION", "AGE", "RENAL_IMPAIRMENT", "HEPATIC_IMPAIRMENT",
+            "CARDIAC", "ALLERGY", "COMORBIDITY_CONTRAINDICATION", "DRUG_INTERACTION",
+            "UNSPECIFIED",
+        }
+
+        # 解析约束列表（新 schema：category/constraint_type/patient_state/contraindicated_targets）
         constraints: List[PatientConstraint] = []
         for i, c in enumerate(data["constraints"]):
-            ctype = c.get("type", "NONE").upper()
+            # 严重度：兼容旧字段名 type
+            ctype = (c.get("constraint_type") or c.get("type") or "NONE").upper()
             if ctype not in {"ABSOLUTE", "RELATIVE", "NONE"}:
                 raise ValueError(
-                    f"[QueryDecomposer] 约束[{i}] type 值非法: {repr(ctype)}。"
+                    f"[QueryDecomposer] 约束[{i}] constraint_type 值非法: {repr(ctype)}。"
                     f"仅接受 ABSOLUTE/RELATIVE/NONE。"
                 )
             # NONE 约束不参与 κ 计算，直接跳过
             if ctype == "NONE":
                 continue
-            target = c.get("target_action", "")
-            if not target:
+
+            category = (c.get("category") or "UNSPECIFIED").upper()
+            if category not in valid_categories:
                 raise ValueError(
-                    f"[QueryDecomposer] 约束[{i}] 缺少 target_action 字段。"
-                    f"  约束数据: {c}"
+                    f"[QueryDecomposer] 约束[{i}] category 值非法: {repr(category)}。"
+                    f"  合法值: {sorted(valid_categories)}"
                 )
+
+            patient_state = (c.get("patient_state") or c.get("text") or "").strip()
+            if not patient_state:
+                raise ValueError(
+                    f"[QueryDecomposer] 约束[{i}] 缺少 patient_state 字段。约束数据: {c}"
+                )
+
+            # 禁忌药物/药类名列表（patient×drug 绑定的显式载体）
+            raw_targets = c.get("contraindicated_targets", [])
+            contraindicated_targets: List[str] = []
+            if isinstance(raw_targets, list):
+                contraindicated_targets = [
+                    t.strip() for t in raw_targets if isinstance(t, str) and t.strip()
+                ]
+
+            # target_action 保留为类别关键词（供规则层快速匹配与向后兼容）
+            target_action = category.lower()
 
             param_val: Optional[float] = None
             param_thr: Optional[float] = None
             if ctype == "RELATIVE":
                 raw_val = c.get("parameter_value")
                 raw_thr = c.get("parameter_threshold")
-                # parameter_value / parameter_threshold 为可选增强字段：
-                # LLM 有时只能提取定性描述（如"elevated AST/ALT"）而无数值，
-                # KappaScorer 回退到 raw_text 级别评估，不应因此丢弃整条约束。
+                # 数值参数为可选增强字段：缺失时 KappaScorer 回退定性评估（κ=0.5）
                 if raw_val is not None:
                     try:
                         param_val = float(raw_val)
@@ -337,27 +354,20 @@ class QueryDecomposer:
 
             constraints.append(PatientConstraint(
                 constraint_type=ctype,  # type: ignore[arg-type]
-                target_action=target.strip().lower(),
-                raw_text=c.get("text", "").strip(),
+                target_action=target_action,
+                raw_text=patient_state,
                 parameter_value=param_val,
                 parameter_threshold=param_thr,
+                category=category,
+                contraindicated_targets=contraindicated_targets,
             ))
-
-        # 解析 candidate_actions（可选字段，不存在时返回空列表）
-        raw_actions = data.get("candidate_actions", [])
-        candidate_actions: List[str] = []
-        if isinstance(raw_actions, list):
-            candidate_actions = [
-                a.strip().lower() for a in raw_actions
-                if isinstance(a, str) and a.strip()
-            ]
 
         return QueryDecomposition(
             original_query=original_query,
             disease_query=data["disease_query"].strip(),
             constraints=constraints,
             decompose_model=self._model,
-            candidate_actions=candidate_actions,
+            candidate_actions=[],
             debug={"raw_llm_output": raw_output},
         )
 
@@ -368,10 +378,12 @@ class QueryDecomposer:
     ) -> str:
         """
         生成缓存键（MD5）。
-        包含 profile 的生理约束字段哈希，确保不同 profile 不共享缓存。
+
+        新架构为 query-only（不依赖 profile），缓存键基于去选项的 stem。
+        前缀 schema 版本标签 "v2scope"，使旧 schema 缓存自动失效（键不同 → cache miss）。
         """
-        profile_json = self._build_profile_json(patient_profile) or ""
-        return hashlib.md5((query + "|" + profile_json).encode("utf-8")).hexdigest()
+        stem = self._strip_options(query)
+        return hashlib.md5(("v2scope|" + stem).encode("utf-8")).hexdigest()
 
     def _load_cache(
         self,
@@ -396,6 +408,8 @@ class QueryDecomposer:
                 raw_text=c["raw_text"],
                 parameter_value=c.get("parameter_value"),
                 parameter_threshold=c.get("parameter_threshold"),
+                category=c.get("category", "UNSPECIFIED"),
+                contraindicated_targets=c.get("contraindicated_targets", []),
             )
             for c in data["constraints"]
         ]
@@ -430,6 +444,8 @@ class QueryDecomposer:
                     "raw_text": c.raw_text,
                     "parameter_value": c.parameter_value,
                     "parameter_threshold": c.parameter_threshold,
+                    "category": c.category,
+                    "contraindicated_targets": c.contraindicated_targets,
                 }
                 for c in decomp.constraints
             ],

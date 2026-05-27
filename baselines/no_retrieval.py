@@ -52,10 +52,12 @@ class NoRetrievalBaseline(BaseRAGSystem):
         """
         直接 LLM 推理（无检索步骤）。
         """
+        # max_tokens 对齐 MARC/公平基线（32000）：MiniMax-M2.5 推理模型 <think> 链长，
+        # 过小预算会截断返回空文本，造成不公平失败。
         prompt = NO_RETRIEVAL_PROMPT.format(query=query)
         predicted_answer = self._client.chat(
             messages=[{"role": "user", "content": prompt}],
-            max_tokens=2000,
+            max_tokens=32000,
         )
 
         options_text = query.split("\n")[-1] if "\n" in query else query

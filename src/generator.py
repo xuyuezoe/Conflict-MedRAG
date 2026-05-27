@@ -20,29 +20,32 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from src.llm_client import LLMClient
 
-from src.types import FCConflict, QueryDecomposition, RetrievedDoc
+from src.types import ActionScopeReport, FCConflict, QueryDecomposition, RetrievedDoc
 
 
 # ── Prompt 模板 ───────────────────────────────────────────────────────────────
 
 SCOPE_ANCHORED_SYSTEM = """\
-You are a clinical decision support system that provides \
-evidence-based treatment recommendations.
+You are a clinical decision support system that selects the single best \
+evidence-based treatment for a specific patient.
 
-CRITICAL INSTRUCTION: You MUST ONLY recommend treatments that are safe \
-and admissible for this specific patient. The evidence provided to you \
-has already been filtered for scope compatibility with this patient.
+PRIMARY TASK: choose the one option that is the standard, guideline-appropriate \
+treatment for this patient's condition AND is supported by the provided evidence.
+
+Scope-safety is handled for you: the PER-OPTION SCOPE VERDICTS and SCOPE BIAS \
+WARNING already identify options that are contraindicated for this patient. You \
+MUST NOT choose any option flagged INADMISSIBLE_ABS, and you must mark such \
+options AVOIDED.
 
 You must:
-1. Base your recommendation ONLY on the provided evidence passages
-2. Cite the source chunk_id for each key claim
-3. Never recommend treatments listed in the SCOPE BIAS WARNING
-4. Before selecting your answer, explicitly assess EVERY option for patient safety:
-   - AVOIDED: option is contraindicated, clinically not indicated, or unsafe for this patient
-     (even if the SCOPE BIAS WARNING does not list it — use the patient profile to judge)
-   - RECOMMENDED: option is supported by evidence AND safe for this patient
-   - NOT_MENTIONED: option is not addressed by evidence and has no clear safety concern
-5. Return a JSON response in the specified format"""
+1. Base your recommendation primarily on the provided evidence; cite the source chunk_id for key claims.
+2. Pick the single best option for this patient's condition. Do NOT reject a clinically \
+   standard, guideline-appropriate option unless it is flagged INADMISSIBLE_ABS or is clearly \
+   contraindicated by the patient's profile.
+3. per_action_status: mark exactly ONE option RECOMMENDED (your answer); mark AVOIDED only for \
+   options that are flagged INADMISSIBLE_ABS or clearly contraindicated; use NOT_MENTIONED for \
+   everything else. When unsure, prefer NOT_MENTIONED over AVOIDED — do NOT over-exclude options.
+4. Return a JSON response in the specified format."""
 
 SCOPE_ANCHORED_USER = """\
 PATIENT PROFILE:
@@ -60,17 +63,18 @@ in your recommendation:
 
 FC CONFLICT NOTES (if any):
 {fc_conflict_notes}
-
+{scope_verdict_block}
 ANSWER OPTIONS:
 {options_section}
 
-PATIENT SAFETY REASONING (complete before answering):
-For each option, ask: "Is this clinically appropriate AND safe for this specific \
-patient given their profile?" Options that are contraindicated, not clinically \
-indicated, or bypass necessary treatment steps MUST be marked AVOIDED.
+DECISION GUIDANCE:
+Pick the single option that is the standard, evidence-supported treatment for this \
+patient's condition and is NOT flagged INADMISSIBLE_ABS. Options flagged INADMISSIBLE_ABS \
+must be marked AVOIDED and must never be chosen. Do NOT mark an option AVOIDED merely \
+because it is not your choice — only mark AVOIDED when it is flagged or clearly \
+contraindicated; otherwise use NOT_MENTIONED.
 
-TASK: Based ONLY on the admissible evidence above, select the single best \
-option for this patient. Classify EVERY option listed above.
+TASK: Using the admissible evidence above, select the single best option for this patient.
 
 Return JSON only:
 {{
@@ -105,14 +109,20 @@ class ScopeAnchoredGenerator:
         self,
         client: LLMClient,
         model: str = "claude-sonnet-4-6",
+        enforce_admissibility_gate: bool = True,
     ) -> None:
         """
         参数：
             client: Anthropic 客户端
             model:  主生成模型（默认 Sonnet 4.6，质量最高）
+            enforce_admissibility_gate:
+                    是否对最终答案启用硬门控：当 LLM 选中被判定为
+                    INADMISSIBLE_ABS 的选项时，确定性改判为 κ 最高的可行选项，
+                    并显式记录 gate_override（不静默）。False 用于"仅告知"消融实验。
         """
         self._client = client
         self._model = model
+        self._enforce_admissibility_gate = enforce_admissibility_gate
 
     def generate(
         self,
@@ -122,6 +132,7 @@ class ScopeAnchoredGenerator:
         fc_conflicts: List[FCConflict],
         patient_profile: Optional[Dict[str, Any]] = None,
         options_text: str = "",
+        action_scope_report: Optional[ActionScopeReport] = None,
     ) -> Tuple[str, Dict[str, str], List[Dict[str, Any]]]:
         """
         生成 scope-anchored 推荐。
@@ -133,12 +144,15 @@ class ScopeAnchoredGenerator:
             fc_conflicts:         FC 冲突列表（生成时提供上下文提示）
             patient_profile:      患者 profile 字典（可选，若为 None 从 constraints 构造）
             options_text:         MedQA 选项文本（A: ... | B: ...），用于输出对齐
+            action_scope_report:  逐选项适用性判定报告（可选）
+                                  提供时：注入 prompt、确定性覆盖 per_action_status
+                                  安全维度、并对最终答案做硬门控
 
         返回：
             (answer_text, per_action_status, attribution_list)
-            answer_text:        最终推荐文本
+            answer_text:        最终推荐文本（经硬门控后的最终选项字母）
             per_action_status:  {选项字母: "RECOMMENDED"/"AVOIDED"/"NOT_MENTIONED"}
-            attribution_list:   来源归因列表
+            attribution_list:   来源归因列表（含 gate_override 审计项，若发生改判）
 
         异常：
             ValueError: LLM 输出格式非法（不兜底）
@@ -156,34 +170,41 @@ class ScopeAnchoredGenerator:
         fc_notes = self._format_fc_notes(fc_conflicts)
 
         # 第五步：解析选项字母并构造 per_action_status 模板（与 gold 对齐）
-        options_section, per_action_status_template = self._format_options(options_text)
+        #         若有逐选项判定报告，给每个选项附确定性判定标注
+        options_section, per_action_status_template = self._format_options(
+            options_text, action_scope_report
+        )
 
-        # 第六步：调用 LLM 生成
+        # 第六步：构造逐选项判定块（含硬约束指令）
+        scope_verdict_block = self._format_scope_verdict_block(action_scope_report)
+
+        # 第七步：调用 LLM 生成
         prompt = SCOPE_ANCHORED_USER.format(
             patient_profile=profile_text,
             admissible_context=context_text,
             inadmissible_actions=warning_text,
             fc_conflict_notes=fc_notes,
+            scope_verdict_block=scope_verdict_block,
             options_section=options_section,
             per_action_status_template=per_action_status_template,
         )
         if not prompt:
             raise ValueError("[Generator] prompt 为空，检查模板变量填充。")
 
-        raw = self._client.chat(
+        # 第八步：调用 LLM 并解析 JSON（chat_json 带有界重试，最终失败仍抛错，不兜底）
+        data, raw = self._client.chat_json(
             messages=[{"role": "user", "content": prompt}],
             max_tokens=32000,
             system=SCOPE_ANCHORED_SYSTEM,
         )
+        answer_text, per_action_status, attribution = self._parse_output(
+            data, raw, decomposition.original_query
+        )
 
-        if not raw:
-            raise ValueError(
-                f"[Generator] LLM 返回空响应（推理模型 token 耗尽）。\n"
-                f"  查询（前 80 字）: {decomposition.original_query[:80]}"
-            )
-
-        # 第七步：解析输出 JSON（失败则抛出，不兜底）
-        return self._parse_output(raw, decomposition.original_query)
+        # 第九步：用判定报告做确定性后处理（安全维度覆盖 + 最终答案硬门控）
+        return self._apply_scope_report(
+            answer_text, per_action_status, attribution, action_scope_report
+        )
 
     def _format_patient_profile(
         self,
@@ -269,13 +290,20 @@ class ScopeAnchoredGenerator:
             )
         return "\n".join(lines)
 
-    def _format_options(self, options_text: str) -> tuple:
+    def _format_options(
+        self,
+        options_text: str,
+        action_scope_report: Optional[ActionScopeReport] = None,
+    ) -> tuple:
         """
         从 "A: desc | B: desc | ..." 格式解析选项，返回：
           (options_section, per_action_status_template)
 
         options_section:          展示给 LLM 的选项列表文本
         per_action_status_template: JSON 模板中每个选项的 key 行（缩进 4 空格）
+
+        若提供 action_scope_report，给每个选项行追加确定性判定标注，例如：
+          B: warfarin 5 mg  [INADMISSIBLE_ABS κ=0.00 — 触发约束: ...]
 
         无选项时使用通用占位符，不影响生成，但 per_action_status 无法对齐 gold。
         """
@@ -296,44 +324,70 @@ class ScopeAnchoredGenerator:
                 '    "<option>": "RECOMMENDED" or "AVOIDED" or "NOT_MENTIONED"',
             )
 
-        section_lines = [f"{letter}: {desc}" for letter, desc in sorted(options.items())]
+        verdicts = action_scope_report.verdicts if action_scope_report else {}
+        section_lines = []
+        for letter, desc in sorted(options.items()):
+            verdict = verdicts.get(letter)
+            if verdict is not None:
+                section_lines.append(
+                    f"{letter}: {desc}  "
+                    f"[{verdict.status} κ={verdict.kappa:.2f} — {verdict.reason}]"
+                )
+            else:
+                section_lines.append(f"{letter}: {desc}")
+
         template_lines = [
             f'    "{letter}": "RECOMMENDED" or "AVOIDED" or "NOT_MENTIONED"'
             for letter in sorted(options)
         ]
         return "\n".join(section_lines), ",\n".join(template_lines)
 
+    def _format_scope_verdict_block(
+        self,
+        action_scope_report: Optional[ActionScopeReport],
+    ) -> str:
+        """
+        构造逐选项判定块（含硬约束指令）。
+
+        无报告时返回空串（向后兼容：prompt 退化为原始无判定形态）。
+        """
+        if action_scope_report is None or not action_scope_report.verdicts:
+            return ""
+
+        lines = [
+            "PER-OPTION SCOPE VERDICTS (deterministic, computed from patient constraints):"
+        ]
+        for letter in sorted(action_scope_report.verdicts):
+            verdict = action_scope_report.verdicts[letter]
+            lines.append(
+                f"  {letter}: {verdict.status} (κ={verdict.kappa:.2f}) — {verdict.reason}"
+            )
+        lines.append("")
+        lines.append(
+            "HARD CONSTRAINT: You MUST NOT select an option marked INADMISSIBLE_ABS "
+            "as your \"answer\". You MUST mark every INADMISSIBLE_ABS option as "
+            "\"AVOIDED\" in per_action_status. For CONDITIONALLY_ADMISSIBLE options, "
+            "prefer a fully ADMISSIBLE option when one exists."
+        )
+        return "\n".join(lines) + "\n"
+
     def _parse_output(
         self,
+        data: Dict[str, Any],
         raw_output: str,
         original_query: str,
     ) -> Tuple[str, Dict[str, str], List[Dict[str, Any]]]:
         """
-        解析 LLM 生成的 JSON 输出。
+        校验并提取已解析的 LLM JSON 输出的字段。
+
+        参数：
+            data:           已由 chat_json 解析的 dict
+            raw_output:     原始输出文本（仅用于错误信息）
+            original_query: 原始查询（仅用于错误信息）
 
         异常：
-            ValueError: JSON 格式非法或缺少必要字段（不兜底）
+            ValueError: 缺少必要字段（不兜底）
         """
-        json_str = raw_output
-        if "```json" in raw_output:
-            start = raw_output.index("```json") + 7
-            end = raw_output.rindex("```")
-            json_str = raw_output[start:end].strip()
-        elif "```" in raw_output:
-            start = raw_output.index("```") + 3
-            end = raw_output.rindex("```")
-            json_str = raw_output[start:end].strip()
-
-        try:
-            data = json.loads(json_str)
-        except json.JSONDecodeError as e:
-            raise ValueError(
-                f"[Generator] LLM 输出 JSON 解析失败。\n"
-                f"  查询（前 80 字）: {original_query[:80]}\n"
-                f"  原始输出（前 300 字）: {raw_output[:300]}\n"
-                f"  解析错误: {e}"
-            )
-
         if "answer" not in data:
             raise ValueError(
                 f"[Generator] LLM 输出缺少 'answer' 字段。"
@@ -345,3 +399,82 @@ class ScopeAnchoredGenerator:
         attribution: List[Dict[str, Any]] = data.get("attribution", [])
 
         return answer_text, per_action_status, attribution
+
+    @staticmethod
+    def _normalize_answer_letter(answer_text: str) -> Optional[str]:
+        """
+        从答案文本提取选项字母（A–E）。
+
+        兼容 "D"、"D: ..."、"Option D" 等形式；无法提取时返回 None。
+        """
+        import re as _re
+
+        match = _re.search(r"\b([A-E])\b", answer_text.strip())
+        return match.group(1) if match else None
+
+    def _apply_scope_report(
+        self,
+        answer_text: str,
+        per_action_status: Dict[str, str],
+        attribution: List[Dict[str, Any]],
+        action_scope_report: Optional[ActionScopeReport],
+    ) -> Tuple[str, Dict[str, str], List[Dict[str, Any]]]:
+        """
+        用逐选项判定报告做确定性后处理。
+
+        两步（混合：确定性主导安全维度，LLM 主导可行集内择优）：
+          1. per_action_status 安全维度覆盖：把所有 INADMISSIBLE_ABS /
+             CONDITIONALLY_ADMISSIBLE 选项强制标为 "AVOIDED"（确定性、可解释）。
+             RECOMMENDED / NOT_MENTIONED 仍保留 LLM 对可行选项的判断。
+          2. 最终答案硬门控（enforce_admissibility_gate=True 时）：
+             若 LLM 答案落在绝对禁忌选项上，改判为 κ 最高的可行选项，
+             并在 attribution 追加显式 gate_override 审计项（不静默）。
+             若无任何可行选项，显式抛错（不编造）。
+
+        无报告时原样返回（向后兼容）。
+        """
+        if action_scope_report is None or not action_scope_report.verdicts:
+            return answer_text, per_action_status, attribution
+
+        # 第一步：安全维度确定性覆盖
+        for letter, verdict in action_scope_report.verdicts.items():
+            if verdict.status in {"INADMISSIBLE_ABS", "CONDITIONALLY_ADMISSIBLE"}:
+                per_action_status[letter] = "AVOIDED"
+
+        # 第二步：最终答案硬门控
+        if not self._enforce_admissibility_gate:
+            return answer_text, per_action_status, attribution
+
+        answer_letter = self._normalize_answer_letter(answer_text)
+        inadmissible = set(action_scope_report.inadmissible_letters)
+        if answer_letter is None or answer_letter not in inadmissible:
+            # 未选中禁忌项，无需改判
+            return answer_text, per_action_status, attribution
+
+        # LLM 选中了绝对禁忌项 → 改判为最优"非禁忌"选项
+        # （优先 ADMISSIBLE，其次 CONDITIONALLY，再次 UNKNOWN/NOT_APPLICABLE）
+        redirect_letters = action_scope_report.gate_redirect_letters
+        if not redirect_letters:
+            raise ValueError(
+                f"[Generator] 硬门控：LLM 答案 '{answer_letter}' 为绝对禁忌，"
+                f"但全部选项均为绝对禁忌，无可改判项（不编造答案）。"
+                f"verdicts={ {l: v.status for l, v in action_scope_report.verdicts.items()} }"
+            )
+
+        new_letter = redirect_letters[0]
+        new_verdict = action_scope_report.verdicts[new_letter]
+        # 显式记录改判审计（不静默）
+        attribution.append({
+            "gate_override": {
+                "from": answer_letter,
+                "to": new_letter,
+                "reason": (
+                    f"LLM 选中绝对禁忌选项 {answer_letter}"
+                    f"（{action_scope_report.verdicts[answer_letter].reason}）；"
+                    f"改判为 κ 最高的可行选项 {new_letter}（κ={new_verdict.kappa:.2f}）"
+                ),
+            }
+        })
+        # 同步 per_action_status：被改判到的选项标 RECOMMENDED
+        per_action_status[new_letter] = "RECOMMENDED"
+        return new_letter, per_action_status, attribution

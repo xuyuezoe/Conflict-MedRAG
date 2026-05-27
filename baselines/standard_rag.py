@@ -85,10 +85,13 @@ class StandardRAG(BaseRAGSystem):
         context_text = "\n\n".join(context_parts)
 
         # 第三步：生成推荐
+        # max_tokens 与 MARC 生成器对齐（32000）：推理模型（MiniMax-M2.5）的
+        # <think> 链较长，过小的 token 预算会导致思维链未闭合即截断、返回空文本，
+        # 造成不公平的失败。对齐预算以保证对照实验的公平性。
         prompt = STANDARD_RAG_PROMPT.format(context=context_text, query=query)
         predicted_answer = self._client.chat(
             messages=[{"role": "user", "content": prompt}],
-            max_tokens=2000,
+            max_tokens=32000,
         )
 
         # 第四步：解析 per_action_status（从文本提取）

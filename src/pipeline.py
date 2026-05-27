@@ -26,7 +26,7 @@ from __future__ import annotations
 import time
 from typing import Any, Dict, List, Optional
 
-from src.types import MARCOutput, QueryDecomposition, RetrievedDoc
+from src.types import ActionScopeReport, MARCOutput, QueryDecomposition, RetrievedDoc
 from src.retriever import HybridRetriever
 from src.query_decomposer import QueryDecomposer
 from src.diagnostic_refiner import DiagnosticRefiner
@@ -39,6 +39,7 @@ from src.fc_handler import FCHandler
 from src.generator import ScopeAnchoredGenerator
 from src.verifier import AttributionVerifier
 from src.scope_index import ScopeIndex
+from src.action_scope_verifier import ActionScopeVerifier
 
 
 class MARCPipeline:
@@ -62,6 +63,8 @@ class MARCPipeline:
         fc_handler: FCHandler,
         generator: ScopeAnchoredGenerator,
         verifier: AttributionVerifier,
+        # 逐选项适用性验证器（可选，不提供则从 kappa_scorer 懒构造）
+        action_scope_verifier: Optional[ActionScopeVerifier] = None,
         # CVFR Phase 0（条件查询向量，可选，不提供则退化为旧双空间架构）
         cvfr_constructor: Optional[CVFRQueryConstructor] = None,
         # CVFR Phase 1（scope embedding 索引，可选，提供时计算 CDR/RSI/CAEC 指标）
@@ -85,6 +88,8 @@ class MARCPipeline:
             fc_handler:           FC 冲突仲裁器（可选）
             generator:            scope-anchored 生成器
             verifier:             归因校验器
+            action_scope_verifier: 逐选项适用性验证器（可选）
+                                   不提供时从 kappa_scorer 懒构造，把约束绑定到选项空间
             cvfr_constructor:     CVFR Phase 0 条件查询向量构造器（可选）
                                   提供时：Stage 1A Dense 检索使用 e*(D,C) 替代 e_D
                                   不提供时：退化为标准疾病向量检索（旧行为）
@@ -116,6 +121,12 @@ class MARCPipeline:
         self._fc_handler = fc_handler
         self._generator = generator
         self._verifier = verifier
+        # 逐选项适用性验证器：未注入时从 kappa_scorer 懒构造（复用规则集与缓存）
+        self._action_scope_verifier = (
+            action_scope_verifier
+            if action_scope_verifier is not None
+            else ActionScopeVerifier(kappa_scorer=kappa_scorer)
+        )
         self._stage1_top_k = stage1_top_k
         self._stage1b_top_k = stage1b_top_k
         self._stage2_top_k = stage2_top_k
@@ -285,6 +296,31 @@ class MARCPipeline:
                 if ": " in part.strip()
             ]
 
+        # ── 逐选项适用性验证（把约束绑定到选项空间 A_q）───────────────────────
+        # 第一性原理：κ(C_q, ·) 是 action-specific 的，选项即候选动作。
+        # 对每个选项判定 κ 与适用性状态，产出 ActionScopeReport，
+        # 供生成器 prompt 注入、per_action_status 确定性覆盖与最终答案硬门控。
+        # 仅在"存在选项 且 存在约束"时计算（无约束时所有选项平凡可行，无需判定）。
+        option_map: Dict[str, str] = {}
+        for part in options_text.split("|"):
+            part = part.strip()
+            if ": " in part:
+                letter, desc = part.split(": ", 1)
+                letter = letter.strip()
+                if letter in {"A", "B", "C", "D", "E"}:
+                    option_map[letter] = desc.strip()
+
+        t0 = time.time()
+        action_scope_report: Optional[ActionScopeReport] = None
+        if option_map and decomposition.constraints:
+            action_scope_report = self._action_scope_verifier.verify_options(
+                options=option_map,
+                constraints=decomposition.constraints,
+            )
+            metrics["n_inadmissible_options"] = len(action_scope_report.inadmissible_letters)
+            metrics["action_scope_any_abs"] = action_scope_report.any_inadmissible_abs
+        metrics["action_scope_latency_s"] = time.time() - t0
+
         # ── CVFR Phase 1：CDR / RSI / CAEC（需要 scope_index 已加载）──────────
         # 若 scope_index 未提供或未加载，跳过（不影响推理结果，仅无指标）
         if self._scope_index is not None and self._scope_index.is_loaded:
@@ -316,6 +352,7 @@ class MARCPipeline:
             fc_conflicts=fc_conflicts,
             patient_profile=patient_profile,
             options_text=options_text,
+            action_scope_report=action_scope_report,
         )
         metrics["gen_latency_s"] = time.time() - t0
 
@@ -355,6 +392,8 @@ class MARCPipeline:
             # 双空间检索新增字段
             stage1b_docs=stage1b_docs,
             constraint_queries=constraint_queries,
+            # 逐选项适用性判定报告
+            action_scope_report=action_scope_report,
         )
 
 
@@ -441,28 +480,26 @@ def build_marc_pipeline(
         print(f"[build_marc_pipeline] scope index 目录不存在（{scope_index_dir}），"
               f"请运行 scripts/build_scope_index.py 构建后重启")
 
-    # Module 0A：临床诊断精化器（LLM，专注诊断推理，无答案泄露）
-    diagnostic_refiner = DiagnosticRefiner(
+    # Module 0：全上下文结构化分解器（LLM，query-only）
+    # 一次 LLM 调用从临床主诉抽出 (D_q, C_q)，C_q 含结构化类别 + 禁忌药名，
+    # 不依赖人工标注 patient_profile，可迁移到全量 MedQA。
+    decomposer = QueryDecomposer(
         client=client,
         model=model,
         cache_dir=cache_path,
-    )
-
-    # Module 0B：规则化约束展开器（零 LLM，确定性）
-    # 注入 QueryDecomposer 作为 fallback（patient_profile 为空时使用）
-    decomposer_fallback = QueryDecomposer(
-        client=client,
-        model=model,
-        cache_dir=cache_path,
-    )
-    constraint_expander = ConstraintExpander(
-        decomposer=decomposer_fallback,
     )
 
     kappa_scorer = KappaScorer(
         client=client,
         model=model,
         cache_dir=cache_path,
+    )
+    # 逐选项验证器：默认仅用确定性层（命名禁忌药匹配 + 规则层）。
+    # 新分解器已用 LLM 医学推理把禁忌药抽到 contraindicated_targets，
+    # 故 per-option LLM 谓词层在此冗余且昂贵，默认关闭（保留为消融开关）。
+    action_scope_verifier = ActionScopeVerifier(
+        kappa_scorer=kappa_scorer,
+        use_llm_layer=False,
     )
     constraint_retriever = ConstraintRetriever(
         client=client,
@@ -488,14 +525,14 @@ def build_marc_pipeline(
         retriever=retriever,
         cvfr_constructor=cvfr_constructor,
         scope_index=scope_index,
-        diagnostic_refiner=diagnostic_refiner,
-        constraint_expander=constraint_expander,
+        decomposer=decomposer,
         kappa_scorer=kappa_scorer,
         constraint_retriever=constraint_retriever,
         dual_space_fusion=dual_space_fusion,
         fc_handler=fc_handler,
         generator=generator,
         verifier=verifier,
+        action_scope_verifier=action_scope_verifier,
         stage1_top_k=stage1_top_k,
         stage1b_top_k=stage1b_top_k,
         stage2_top_k=stage2_top_k,

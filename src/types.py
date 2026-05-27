@@ -29,16 +29,24 @@ class PatientConstraint:
                               ABSOLUTE = 绝对禁忌（κ=0，集合排除）
                               RELATIVE = 相对禁忌（κ∈(0,1)，降权+标记）
                               NONE     = 无约束（κ=1，正常保留）
-        target_action:        被约束的 action 关键词（药物名、操作名等）
-        raw_text:             原始文本描述（保留供调试）
+        target_action:        被约束的患者状态/类别关键词（如 "pregnancy"/"renal"），
+                              保留供规则层匹配与向后兼容
+        raw_text:             原始文本描述（患者状态，供调试与 SCOPE BIAS WARNING）
         parameter_value:      相对约束的患者实际参数值（如 eGFR=28）
         parameter_threshold:  相对约束的安全阈值（如 eGFR 阈值=60）
+        category:             约束类别（结构化枚举）
+                              PREGNANCY/LACTATION/AGE/RENAL_IMPAIRMENT/HEPATIC_IMPAIRMENT/
+                              CARDIAC/ALLERGY/COMORBIDITY_CONTRAINDICATION/DRUG_INTERACTION/UNSPECIFIED
+        contraindicated_targets: 由 LLM 依据患者状态判定的禁忌药物/药类名列表
+                              （第一性原理：把 patient×drug 绑定显式化，供验证器逐选项匹配）
     """
     constraint_type: Literal["ABSOLUTE", "RELATIVE", "NONE"]
     target_action: str
     raw_text: str
     parameter_value: Optional[float] = None
     parameter_threshold: Optional[float] = None
+    category: str = "UNSPECIFIED"
+    contraindicated_targets: List[str] = field(default_factory=list)
 
     def compute_kappa_single(self) -> float:
         """
@@ -107,8 +115,24 @@ class QueryDecomposition:
 
     @property
     def absolute_target_actions(self) -> List[str]:
-        """所有绝对禁忌的目标 action 列表"""
-        return [c.target_action for c in self.constraints if c.constraint_type == "ABSOLUTE"]
+        """
+        所有绝对禁忌的具体药物/药类名列表（去重，保序）。
+
+        优先使用 LLM 抽取的 contraindicated_targets（具体药名，供 SCOPE BIAS WARNING
+        与验证器绑定）；某约束未提供 targets 时回退到 target_action（类别关键词）。
+        """
+        result: List[str] = []
+        seen: set = set()
+        for c in self.constraints:
+            if c.constraint_type != "ABSOLUTE":
+                continue
+            names = c.contraindicated_targets or ([c.target_action] if c.target_action else [])
+            for name in names:
+                key = name.strip().lower()
+                if key and key not in seen:
+                    seen.add(key)
+                    result.append(name)
+        return result
 
 
 # ── 文档与检索 ────────────────────────────────────────────────────────────────
@@ -257,6 +281,137 @@ class FCConflict:
     resolution_reason: str
 
 
+# ── 逐选项适用性判定 ──────────────────────────────────────────────────────────
+
+@dataclass
+class OptionVerdict:
+    """
+    单个候选选项（A–E）的适用性判定结果（per-option admissibility）。
+
+    第一性原理（cvfr_theory.md §2.2）：
+      约束 C 是 action-specific 的，而 MCQ 的选项正是候选治疗动作 A_q。
+      因此 κ(C_q, ·) 应在选项粒度计算，而非仅在文档粒度计算。
+      本结构把"约束 → 选项"的绑定显式化、可审计化，填补原系统中
+      约束从未作用到选项空间的架构缺口。
+
+    参数：
+        letter:             选项字母（A/B/C/D/E）
+        action:             从选项描述抽取的主 action 关键词（药物/操作名），仅供展示
+        description:        选项原始描述文本
+        status:             适用性状态
+                            ADMISSIBLE              = κ=1，可行
+                            INADMISSIBLE_ABS        = κ=0，绝对禁忌（集合排除）
+                            CONDITIONALLY_ADMISSIBLE= κ∈(0,1)，相对禁忌（需调整/降权）
+                            NOT_APPLICABLE          = 无可判定 action（如纯操作无药物且规则/谓词均未命中）
+                            UNKNOWN                 = 抽到 action 但规则层与谓词层均无定论
+        kappa:              该选项的 κ 值 [0,1]
+        reason:             人类可读判定依据（命中的约束 raw_text / 谓词层结论）
+        source:             判定来源 named_target / rule / predicate / none（可解释性与审计）
+                            named_target = 命中 LLM 抽取的 contraindicated_targets（最高优先）
+        matched_constraint: 触发判定的约束 raw_text（若有，供审计）
+    """
+    letter: str
+    action: str
+    description: str
+    status: Literal[
+        "ADMISSIBLE",
+        "INADMISSIBLE_ABS",
+        "CONDITIONALLY_ADMISSIBLE",
+        "NOT_APPLICABLE",
+        "UNKNOWN",
+    ]
+    kappa: float
+    reason: str
+    source: Literal["named_target", "rule", "predicate", "none"]
+    matched_constraint: Optional[str] = None
+
+
+@dataclass
+class ActionScopeReport:
+    """
+    全部候选选项的适用性汇总（ActionScopeVerifier 的输出）。
+
+    设计原则（CLAUDE.md 富返回 + 可观测）：
+      携带每个选项的完整 verdict，供生成器 prompt 注入、per_action_status
+      确定性覆盖、最终答案硬门控，以及指标计算与论文分析。
+
+    参数：
+        verdicts: {选项字母 → OptionVerdict}
+    """
+    verdicts: Dict[str, "OptionVerdict"]
+
+    @property
+    def any_inadmissible_abs(self) -> bool:
+        """是否存在绝对禁忌选项（用于硬门控与 SCSR 语义关联）"""
+        return any(v.status == "INADMISSIBLE_ABS" for v in self.verdicts.values())
+
+    @property
+    def inadmissible_letters(self) -> List[str]:
+        """所有绝对禁忌选项的字母列表（最终答案不得落在此集合）"""
+        return [
+            letter
+            for letter, verdict in self.verdicts.items()
+            if verdict.status == "INADMISSIBLE_ABS"
+        ]
+
+    @property
+    def admissible_letters_by_kappa(self) -> List[str]:
+        """可行选项（ADMISSIBLE/CONDITIONALLY_ADMISSIBLE）按 κ 降序排列"""
+        admissible = [
+            verdict
+            for verdict in self.verdicts.values()
+            if verdict.status in {"ADMISSIBLE", "CONDITIONALLY_ADMISSIBLE"}
+        ]
+        admissible.sort(key=lambda v: v.kappa, reverse=True)
+        return [verdict.letter for verdict in admissible]
+
+    @property
+    def gate_redirect_letters(self) -> List[str]:
+        """
+        硬门控改判候选：所有"非绝对禁忌"选项，按偏好排序。
+
+        偏好顺序（确定性优先选明确可行，其次未知但非禁忌）：
+          ADMISSIBLE → CONDITIONALLY_ADMISSIBLE → UNKNOWN/NOT_APPLICABLE
+        同档内按 κ 降序。仅当全部选项均为 INADMISSIBLE_ABS 时返回空列表
+        （此时确无安全选择，门控应显式抛错而非编造）。
+        """
+        priority = {
+            "ADMISSIBLE": 0,
+            "CONDITIONALLY_ADMISSIBLE": 1,
+            "UNKNOWN": 2,
+            "NOT_APPLICABLE": 2,
+        }
+        candidates = [
+            verdict
+            for verdict in self.verdicts.values()
+            if verdict.status != "INADMISSIBLE_ABS"
+        ]
+        candidates.sort(key=lambda v: (priority.get(v.status, 3), -v.kappa))
+        return [verdict.letter for verdict in candidates]
+
+    def to_per_action_status(self) -> Dict[str, str]:
+        """
+        将 verdict 映射为生成器/指标使用的 per_action_status 语义（安全下界）。
+
+        映射规则：
+          INADMISSIBLE_ABS / CONDITIONALLY_ADMISSIBLE → "AVOIDED"
+          ADMISSIBLE                                   → "RECOMMENDED"（候选，最终由生成器择一）
+          NOT_APPLICABLE / UNKNOWN                     → "NOT_MENTIONED"
+
+        注意：此映射仅给出确定性的"安全下界"——禁忌项必为 AVOIDED；
+        最终单一 RECOMMENDED 仍由生成器在 ADMISSIBLE 集合内决定。
+        """
+        mapping: Dict[str, str] = {}
+        for letter, verdict in self.verdicts.items():
+            if verdict.status in {"INADMISSIBLE_ABS", "CONDITIONALLY_ADMISSIBLE"}:
+                mapping[letter] = "AVOIDED"
+            elif verdict.status == "ADMISSIBLE":
+                mapping[letter] = "RECOMMENDED"
+            else:
+                mapping[letter] = "NOT_MENTIONED"
+        return mapping
+
+
 # ── MARC 完整输出 ─────────────────────────────────────────────────────────────
 
 @dataclass
@@ -288,6 +443,9 @@ class MARCOutput:
         attribution:         每个 claim 的来源 chunk_id 列表
         srl_violations:      引用了 κ=0 文献的 claim（SLR 违规列表）
         metrics:             运行时指标（延迟、token 数、API 调用次数、总成本）
+        action_scope_report: 逐选项适用性判定报告（per-option admissibility）
+                             由 ActionScopeVerifier 产出，把约束绑定到选项空间；
+                             无约束或无选项时为 None
     """
     query: str
     decomposition: QueryDecomposition
@@ -304,6 +462,8 @@ class MARCOutput:
     # 双空间检索新增字段（正交双空间架构 research.md §3.6）
     stage1b_docs: List[RetrievedDoc] = field(default_factory=list)
     constraint_queries: Dict[str, str] = field(default_factory=dict)
+    # 逐选项适用性判定报告（约束绑定到选项空间）
+    action_scope_report: Optional[ActionScopeReport] = None
 
     @property
     def admissible_docs(self) -> List[RetrievedDoc]:

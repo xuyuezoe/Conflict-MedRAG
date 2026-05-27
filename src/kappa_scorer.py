@@ -19,6 +19,7 @@
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -28,6 +29,50 @@ from src.llm_client import LLMClient
 
 from src.types import PatientConstraint, QueryDecomposition, RetrievedDoc, ScopePredicate, TextChunk
 from src.retriever import RetrievalResult
+from src.constraint_expander import DRUG_CLASS_EXPANSION
+
+
+# ── 禁忌靶点别名表（类成员 + 同义词/变体）────────────────────────────────────
+#
+# 用途：分解器（LLM）命名的 contraindicated_targets 与 MCQ 选项用词常有
+#       "类名 vs 成员"或"同义词形"差异（如 LLM 写 "ACE inhibitors"，
+#       选项写 "lisinopril"；LLM 写 "radioactive iodine I-131"，选项写 "radioiodine"）。
+#       本表把禁忌类/同义靶点展开为可匹配的具体药名与词形变体，提升绑定召回。
+#
+# 与 DRUG_CLASS_EXPANSION（抗生素/NSAID/阿片等）互补，二者在 _expand_target 中合并。
+
+_CONTRAINDICATION_ALIASES: Dict[str, List[str]] = {
+    "radioactive iodine": [
+        "radioiodine", "radioactive iodine", "rai", "i-131", "i131",
+        "iodine-131", "iodine 131", "radioactive iodine i-131",
+    ],
+    "ace inhibitor": [
+        "ace inhibitor", "acei", "lisinopril", "enalapril", "ramipril",
+        "captopril", "benazepril", "perindopril", "quinapril",
+    ],
+    "angiotensin receptor blocker": [
+        "arb", "angiotensin receptor blocker", "losartan", "valsartan",
+        "candesartan", "irbesartan", "olmesartan", "telmisartan",
+    ],
+    "dopamine antagonist": [
+        "dopamine antagonist", "metoclopramide", "prochlorperazine",
+        "haloperidol", "chlorpromazine", "promethazine", "droperidol",
+    ],
+    "statin": [
+        "statin", "atorvastatin", "simvastatin", "rosuvastatin",
+        "pravastatin", "lovastatin", "pitavastatin",
+    ],
+    "beta blocker": [
+        "beta blocker", "beta-blocker", "propranolol", "nadolol", "timolol",
+        "carvedilol", "labetalol", "metoprolol", "atenolol", "bisoprolol",
+    ],
+    "bisphosphonate": [
+        "bisphosphonate", "alendronate", "risedronate", "ibandronate",
+        "zoledronic acid", "pamidronate",
+    ],
+    "thiazolidinedione": ["thiazolidinedione", "pioglitazone", "rosiglitazone"],
+    "live vaccine": ["live vaccine", "live attenuated", "mmr", "varicella", "rotavirus"],
+}
 
 
 # ── 规则库：绝对禁忌对 ────────────────────────────────────────────────────────
@@ -403,6 +448,78 @@ Return ONLY the JSON array, no other text."""
         kappa, scope_status = self._predicate_layer_check(scope_pred, constraints)
         return kappa, scope_status, scope_pred
 
+    def check_option(
+        self,
+        letter: str,
+        description: str,
+        constraints: List[PatientConstraint],
+        use_llm_layer: bool = True,
+    ) -> Tuple[float, str, str]:
+        """
+        对单个候选选项（A–E）的描述文本判定 κ 与适用性状态。
+
+        第一性原理：把 κ 机制从"文档维度"扩展到"选项维度"。
+        选项即候选动作 a_i ∈ A_q，约束 C 是 action-specific 的，
+        因此可将选项描述视为一条最小 action 陈述，复用既有两层 κ 机制判定
+        κ(C_q, a_i)。规则层确定性命中即定论，无 LLM 成本；规则层无定论时
+        按需用谓词层（LLM 提取 π）兜底。
+
+        与 compute_kappa 的区别：
+          - 输入是选项描述文本而非检索文档；
+          - 显式返回判定来源 source（rule/predicate/none），供审计与可解释；
+          - 谓词层使用命名空间隔离的伪 chunk_id（opt::<hash>），
+            避免污染真实文档 π_d 的磁盘缓存。
+
+        参数：
+            letter:         选项字母（仅用于日志/调试，不参与判定）
+            description:    选项描述文本（如 "Oral warfarin therapy"）
+            constraints:    患者约束列表 C_q
+            use_llm_layer:  规则层无定论时是否启用 LLM 谓词层兜底
+                            （False 用于纯确定性消融实验）
+
+        返回：
+            (kappa, scope_status, source)
+            kappa:        [0,1]
+            scope_status: ADMISSIBLE / INADMISSIBLE_ABS / INADMISSIBLE_REL / UNKNOWN
+            source:       rule / predicate / none
+        """
+        # 第一阶段：无约束 → 平凡可行
+        if not constraints:
+            return 1.0, "ADMISSIBLE", "rule"
+
+        # 第二阶段：命名禁忌药匹配（最高优先级）。
+        # 复用 LLM 在分解阶段显式抽取的 contraindicated_targets：
+        # 若选项正面推荐了某约束的禁忌药，直接定论（确定性，可解释）。
+        named_result = self._named_target_check(description, constraints)
+        if named_result is not None:
+            kappa, scope_status = named_result
+            return kappa, scope_status, "named_target"
+
+        # 第三阶段：规则层确定性判定（命中即定论，O(1)，无 API 成本）
+        rule_result = self._rule_layer_check(description, constraints)
+        if rule_result is not None:
+            kappa, scope_status = rule_result
+            return kappa, scope_status, "rule"
+
+        # 第四阶段：LLM 谓词层兜底（仅在启用且客户端可用时）
+        if not use_llm_layer or self._client is None:
+            # 显式返回 UNKNOWN，不静默当成可行（遵守 CLAUDE.md 禁兜底）
+            return 1.0, "UNKNOWN", "none"
+
+        # 用命名空间隔离的伪 chunk_id，避免污染真实文档缓存
+        pseudo_id = f"opt::{hashlib.sha1(description.encode('utf-8')).hexdigest()[:12]}"
+        option_chunk = TextChunk(
+            chunk_id=pseudo_id,
+            source_book="__option__",
+            text=description,
+            start_char=0,
+            end_char=len(description),
+            token_count=len(description.split()),
+        )
+        scope_pred = self._get_or_extract_scope_predicate(option_chunk)
+        kappa, scope_status = self._predicate_layer_check(scope_pred, constraints)
+        return kappa, scope_status, "predicate"
+
     # 文档文本中"负面上下文"的模式（出现时表示文档是在说某药物不适用，而非推荐）
     _NEGATIVE_CONTEXT_PATTERNS: List[str] = [
         r"cannot\s+tolerate",
@@ -416,6 +533,21 @@ Return ONLY the JSON array, no other text."""
         r"hypersensitiv",
         r"in\s+patients\s+who\s+(?:cannot|are\s+unable)",
         r"penicillin.{0,20}allergic",
+        # 停药/换药动词：药物是被"撤掉"而非被推荐（修复 MCQ 选项 "Discontinue X, start Y"
+        # 把被停的 X 误判为正面推荐的假阳性）
+        r"discontinu\w*",
+        r"\bstop\w*",
+        r"\bcease\w*",
+        r"\bwithdraw\w*",
+        r"\btaper\w*",
+        r"\bwithhold\w*",
+        r"switch\w*\s+(?:from|off)",
+        r"\bwean\w*",
+        # 脱敏/分级激发/试验剂量：在过敏患者身上"安全给药"的协议，
+        # 不是禁忌推荐（修复 MACB-024：penicillin desensitization 被误判禁忌）
+        r"desensiti[sz]\w*",
+        r"graded\s+challenge",
+        r"test\s+dose",
     ]
 
     def _is_positive_recommendation(self, doc_text_lower: str, drug_name: str) -> bool:
@@ -449,6 +581,87 @@ Return ONLY the JSON array, no other text."""
 
         # 所有出现位置均有负面上下文，视为"提及但不推荐"
         return False
+
+    def _named_target_check(
+        self,
+        option_text: str,
+        constraints: List[PatientConstraint],
+    ) -> Optional[Tuple[float, str]]:
+        """
+        命名禁忌药匹配层：选项是否正面推荐了某约束显式列出的禁忌药。
+
+        第一性原理：分解器（LLM）已依据患者状态把禁忌药/药类抽到
+        constraint.contraindicated_targets。此处只需把"选项推荐的药"与之比对，
+        即完成 patient×drug 绑定——无需静态规则表覆盖全部药物。
+
+        判定规则：
+          - 命中 ABSOLUTE 约束的禁忌药 → (0.0, "INADMISSIBLE_ABS")
+          - 命中 RELATIVE 约束的禁忌药 → (κ_single, "INADMISSIBLE_REL")
+          - 无命中 → None（交由后续规则层/谓词层）
+
+        ABSOLUTE 优先于 RELATIVE（绝对禁忌一票否决）。
+
+        参数：
+            option_text: 选项描述文本
+            constraints: 患者约束列表（须含 contraindicated_targets）
+
+        返回：
+            (kappa, scope_status) 或 None
+        """
+        text_lower = option_text.lower()
+        relative_hit: Optional[Tuple[float, str]] = None
+
+        for c in constraints:
+            if not c.contraindicated_targets:
+                continue
+            for target in c.contraindicated_targets:
+                # 展开为别名集合（类成员 + 同义词/变体），逐一匹配
+                for alias in self._expand_target(target):
+                    # 复用正面推荐判定，规避"提及但排除/停药"的假阳性
+                    if self._is_positive_recommendation(text_lower, alias):
+                        if c.constraint_type == "ABSOLUTE":
+                            return 0.0, "INADMISSIBLE_ABS"
+                        if c.constraint_type == "RELATIVE" and relative_hit is None:
+                            relative_hit = (c.compute_kappa_single(), "INADMISSIBLE_REL")
+                        break  # 该 target 已命中，无需试其余别名
+
+        return relative_hit
+
+    @staticmethod
+    def _expand_target(target: str) -> List[str]:
+        """
+        把单个禁忌靶点展开为可匹配的别名集合（去重，保序）。
+
+        展开来源（合并）：
+          1. 靶点本身（规范化小写）
+          2. DRUG_CLASS_EXPANSION：抗生素/NSAID/阿片等类→成员
+          3. _CONTRAINDICATION_ALIASES：禁忌类/同义靶点→成员与词形变体
+        类名匹配时同时尝试去复数（"inhibitors"→"inhibitor"）。
+
+        参数：
+            target: 分解器命名的禁忌药/药类名
+
+        返回：
+            别名字符串列表（含 target 自身）
+        """
+        t = target.strip().lower()
+        if not t:
+            return []
+        aliases: List[str] = [t]
+        seen = {t}
+        # 子串包含式匹配 alias 表的键：使被限定/带后缀的靶点也能命中
+        # （如 "radioactive iodine i-131" 命中键 "radioactive iodine"；
+        #   "penicillins"/"penicillin class" 命中键 "penicillin"）。
+        # 键均为 >=4 字符的具体药/类名，子串匹配不会引入短词误命中。
+        for table in (DRUG_CLASS_EXPANSION, _CONTRAINDICATION_ALIASES):
+            for key, members in table.items():
+                if key in t or t in key:
+                    for member in members:
+                        m = member.strip().lower()
+                        if m and m not in seen:
+                            seen.add(m)
+                            aliases.append(m)
+        return aliases
 
     def _rule_layer_check(
         self,

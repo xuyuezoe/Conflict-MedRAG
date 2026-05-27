@@ -151,11 +151,13 @@ class RunLogger:
             "disease_query": dec.disease_query,
             "constraints": [
                 {
-                    "type":                c.constraint_type,
-                    "target_action":       c.target_action,
-                    "raw_text":            c.raw_text,
-                    "parameter_value":     c.parameter_value,
-                    "parameter_threshold": c.parameter_threshold,
+                    "category":               c.category,
+                    "type":                   c.constraint_type,
+                    "patient_state":          c.raw_text,
+                    "contraindicated_targets": c.contraindicated_targets,
+                    "target_action":          c.target_action,
+                    "parameter_value":        c.parameter_value,
+                    "parameter_threshold":    c.parameter_threshold,
                 }
                 for c in dec.constraints
             ],
@@ -237,6 +239,27 @@ class RunLogger:
             "latency_s":            round(mo.metrics.get("gen_latency_s", 0.0), 3),
         }
 
+        # ── Action Scope（逐选项适用性判定）─────────────────────────────────────
+        if mo.action_scope_report is not None:
+            action_scope = {
+                "n_inadmissible_options": mo.metrics.get("n_inadmissible_options"),
+                "any_inadmissible_abs":   mo.metrics.get("action_scope_any_abs"),
+                "latency_s":              round(mo.metrics.get("action_scope_latency_s", 0.0), 3),
+                "verdicts": {
+                    letter: {
+                        "action":             v.action,
+                        "status":             v.status,
+                        "kappa":              v.kappa,
+                        "source":             v.source,
+                        "reason":             v.reason,
+                        "matched_constraint": v.matched_constraint,
+                    }
+                    for letter, v in mo.action_scope_report.verdicts.items()
+                },
+            }
+        else:
+            action_scope = {"verdicts": {}, "note": "无约束或无选项，未做逐选项判定"}
+
         # ── Verification ──────────────────────────────────────────────────────
         verification = {
             "slr":                   mo.metrics.get("slr"),
@@ -261,6 +284,7 @@ class RunLogger:
             "stage_2_dcr":            stage2,
             "stage_3_scsr":           stage3,
             "fc_handler":             fc,
+            "action_scope":           action_scope,
             "generation":             generation,
             "verification":           verification,
 

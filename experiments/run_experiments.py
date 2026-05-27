@@ -186,7 +186,10 @@ def run_all(config: ExperimentConfig) -> None:
     benchmark = load_benchmark(config.benchmark_path)
 
     # 按 tag 过滤（如只跑 SC 样本或指定 tag）
-    if config.tag_filter:
+    if config.sample_ids:
+        benchmark = [s for s in benchmark if s.sample_id in config.sample_ids]
+        print(f"  sample_ids={config.sample_ids}，过滤后: {len(benchmark)} 个样本")
+    elif config.tag_filter:
         benchmark = [s for s in benchmark if s.candidate_tag in config.tag_filter]
         print(f"  tag_filter={config.tag_filter}，过滤后: {len(benchmark)} 个样本")
     else:
@@ -318,6 +321,13 @@ def main() -> None:
         help="只评估 SC 样本（SC_ABSOLUTE_CAND + SC_RELATIVE_CAND），"
              "等价于 --tag-filter SC_ABSOLUTE_CAND SC_RELATIVE_CAND",
     )
+    p.add_argument(
+        "--sample-ids",
+        nargs="+",
+        default=None,
+        metavar="ID",
+        help="只评估指定 sample_id 的样本（如重跑失败样本：--sample-ids MACB-030 MACB-053）",
+    )
     args = p.parse_args()
 
     # LLM 配置（API key、模型名）从 .env 文件读取，无需命令行传入
@@ -335,6 +345,7 @@ def main() -> None:
         results_dir=args.results_dir,
         sample_limit=args.limit,
         tag_filter=tag_filter,
+        sample_ids=args.sample_ids,
     )
     if args.systems:
         config.systems_to_run = args.systems

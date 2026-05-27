@@ -163,42 +163,12 @@ class DiagnosticRefiner:
 
         # 第三步：调用 LLM 做临床推理
         prompt = DIAGNOSTIC_REFINER_PROMPT.format(clinical_text=clinical_text)
-        raw_output = self._client.chat(
+        # 第四步：调用 LLM 并解析 JSON（chat_json 带有界重试，最终失败仍抛错，不兜底）
+        data, raw_output = self._client.chat_json(
             messages=[{"role": "user", "content": prompt}],
-            max_tokens=8000,
+            max_tokens=16000,
             system=DIAGNOSTIC_REFINER_SYSTEM,
         )
-
-        if not raw_output:
-            raise ValueError(
-                f"[DiagnosticRefiner] LLM 返回空响应（推理模型 token 耗尽）。\n"
-                f"  查询（前 80 字）: {clinical_text[:80]}"
-            )
-
-        # 第四步：解析 JSON（失败直接抛出，不兜底）
-        json_str = raw_output.strip()
-        if "```" in json_str:
-            start = json_str.index("```") + 3
-            if json_str[start : start + 4].lower().startswith("json"):
-                start += 4
-            end = json_str.rindex("```")
-            json_str = json_str[start:end].strip()
-
-        # 兼容部分模型无 fence 格式（MiniMax 风格）
-        if not json_str.startswith("{"):
-            match = re.search(r"\{.*\}", json_str, re.DOTALL)
-            if match:
-                json_str = match.group(0)
-
-        try:
-            data = json.loads(json_str)
-        except json.JSONDecodeError as e:
-            raise ValueError(
-                f"[DiagnosticRefiner] JSON 解析失败。\n"
-                f"  查询（前 80 字）: {clinical_text[:80]}\n"
-                f"  原始输出（前 300 字）: {raw_output[:300]}\n"
-                f"  解析错误: {e}"
-            )
 
         refined_diagnosis: str = data.get("refined_diagnosis", "")
         discriminating_features: List[str] = data.get("discriminating_features", [])

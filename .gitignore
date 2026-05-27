@@ -13,10 +13,11 @@ build/
 data/index/
 data/cache/
 
-# 实验结果（按需提交）
-results/
-results_test/
-results_cvfr/
+# 实验结果（体积大、本地生成；覆盖所有 results* 目录）
+results*/
+
+# 论文模版（IEEE 会议模版，非项目代码）
+IEEE-conference-template-062824/
 
 # 原始教材（版权保护，不可分发）
 data_clean/textbooks/

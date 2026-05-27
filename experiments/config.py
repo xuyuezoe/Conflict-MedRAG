@@ -54,6 +54,7 @@ class ExperimentConfig:
     ])
     sample_limit: Optional[int] = None    # None = 全量；设 N 用于调试
     tag_filter: Optional[List[str]] = None  # None = 全量；设列表按 candidate_tag 过滤
+    sample_ids: Optional[List[str]] = None  # None = 全量；设列表按 sample_id 精准过滤（如重跑失败样本）
 
     def validate(self) -> None:
         """

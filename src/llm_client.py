@@ -32,10 +32,13 @@ LLM 配置与客户端统一入口
 """
 from __future__ import annotations
 
+import json
 import os
 import re
+import sys
+import time
 from pathlib import Path
-from typing import Any, Dict, List, Literal, Optional
+from typing import Any, Dict, List, Literal, Optional, Tuple
 
 import anthropic
 from dotenv import load_dotenv
@@ -47,6 +50,78 @@ _PROJECT_ROOT = Path(__file__).parent.parent
 load_dotenv(_PROJECT_ROOT / ".env", override=False)
 
 _DEFAULT_MODEL = "claude-sonnet-4-6"
+
+
+# ── 异常与重试配置 ────────────────────────────────────────────────────────────
+
+class LLMTruncationError(RuntimeError):
+    """
+    推理模型思维链（<think>）未闭合即耗尽 max_tokens，或返回空内容，无有效输出。
+
+    这是**可恢复错误**：上层（chat_json）可通过增大 max_tokens 重试。
+    禁止静默吞为空字符串（违反"禁止兜底"原则）。
+    """
+
+
+class LLMJSONError(ValueError):
+    """
+    LLM 输出无法解析为 JSON（已穷尽有界重试）。
+
+    继承 ValueError 以兼容既有 `except ValueError` 调用方。
+    """
+
+
+# 瞬时网络/服务错误的重试配置（退避秒数 = base ** attempt）
+_TRANSIENT_MAX_RETRIES = 3
+_TRANSIENT_BACKOFF_BASE = 2.0
+
+
+def _is_transient_error(exc: Exception) -> bool:
+    """
+    判断异常是否为可重试的瞬时错误（网络断开/超时/限流/服务端 5xx）。
+
+    按异常类名匹配，避免硬依赖某一 SDK 的异常类型层级。
+    """
+    name = type(exc).__name__
+    transient_names = {
+        "APIConnectionError", "APITimeoutError", "RateLimitError",
+        "InternalServerError", "ServiceUnavailableError", "RemoteProtocolError",
+    }
+    return name in transient_names or isinstance(exc, (ConnectionError, TimeoutError))
+
+
+def _extract_json_block(raw: str) -> Dict[str, Any]:
+    """
+    从 LLM 原始输出中提取并解析 JSON 对象。
+
+    依次处理：```json fence → ``` fence → 裸 {...}（MiniMax 等无 fence 风格）。
+
+    参数：
+        raw: LLM 原始输出文本
+
+    返回：
+        解析后的 dict
+
+    异常：
+        ValueError:            输入为空
+        json.JSONDecodeError:  无法解析为合法 JSON
+    """
+    if not raw or not raw.strip():
+        raise ValueError("LLM 输出为空，无 JSON 可解析")
+    s = raw.strip()
+    if "```json" in s:
+        start = s.index("```json") + 7
+        end = s.rindex("```")
+        s = s[start:end].strip()
+    elif "```" in s:
+        start = s.index("```") + 3
+        end = s.rindex("```")
+        s = s[start:end].strip()
+    if not s.startswith("{"):
+        match = re.search(r"\{.*\}", s, re.DOTALL)
+        if match:
+            s = match.group(0)
+    return json.loads(s)
 
 
 # ── 统一 LLM 客户端 ───────────────────────────────────────────────────────────
@@ -108,9 +183,99 @@ class LLMClient:
         异常：
             任何 API 异常直接传播（不静默捕获）
         """
-        if self._backend == "anthropic":
-            return self._anthropic_chat(messages, max_tokens, system)
-        return self._openai_chat(messages, max_tokens, system)
+        last_exc: Optional[Exception] = None
+        for attempt in range(_TRANSIENT_MAX_RETRIES):
+            try:
+                if self._backend == "anthropic":
+                    return self._anthropic_chat(messages, max_tokens, system)
+                return self._openai_chat(messages, max_tokens, system)
+            except Exception as exc:
+                # 仅对瞬时错误重试；LLMTruncationError 等非瞬时错误立即上抛
+                if _is_transient_error(exc) and attempt < _TRANSIENT_MAX_RETRIES - 1:
+                    wait = _TRANSIENT_BACKOFF_BASE ** attempt
+                    print(
+                        f"[LLMClient] 瞬时错误 {type(exc).__name__}，"
+                        f"{wait:.0f}s 后重试 ({attempt + 1}/{_TRANSIENT_MAX_RETRIES})",
+                        file=sys.stderr,
+                    )
+                    time.sleep(wait)
+                    last_exc = exc
+                    continue
+                raise
+        # 理论不可达：循环要么 return 要么 raise
+        raise RuntimeError(f"[LLMClient] 重试逻辑异常退出: {last_exc}")
+
+    def chat_json(
+        self,
+        messages: List[Dict[str, str]],
+        max_tokens: int = 4096,
+        system: Optional[str] = None,
+        max_retries: int = 2,
+    ) -> Tuple[Dict[str, Any], str]:
+        """
+        调用 LLM 并将输出解析为 JSON dict，带有界重试与修复。
+
+        恢复策略（非兜底：全程可观测、最终失败仍抛错）：
+          - 截断（LLMTruncationError）→ 增大 max_tokens 重试
+          - JSON 解析失败 → 追加"仅输出 JSON、抑制推理"指令后重试
+          - 穷尽 max_retries 次仍失败 → 抛 LLMJSONError（含原始输出供审计）
+
+        参数：
+            messages:    对话消息（最后一条须为 user 角色）
+            max_tokens:  初始 max_tokens（重试时按 1.5x 递增，上限 64000）
+            system:      系统提示
+            max_retries: 额外重试次数（总尝试次数 = max_retries + 1）
+
+        返回：
+            (data, raw): 解析后的 dict 与原始输出文本
+
+        异常：
+            LLMJSONError: 穷尽重试仍无法解析为合法 JSON
+        """
+        cur_max_tokens = max_tokens
+        last_raw = ""
+        last_err: Optional[Exception] = None
+
+        for attempt in range(max_retries + 1):
+            msgs = messages
+            if attempt > 0:
+                # 重试：抑制思维链长度，强制仅输出 JSON
+                repair = (
+                    "\n\nIMPORTANT: Output ONLY a single valid JSON object. "
+                    "Do NOT include any reasoning, explanation, or markdown fences."
+                )
+                msgs = list(messages[:-1]) + [
+                    {**messages[-1], "content": messages[-1]["content"] + repair}
+                ]
+                cur_max_tokens = min(int(cur_max_tokens * 1.5), 64000)
+
+            try:
+                raw = self.chat(messages=msgs, max_tokens=cur_max_tokens, system=system)
+            except LLMTruncationError as exc:
+                last_err, last_raw = exc, ""
+                print(
+                    f"[LLMClient.chat_json] 截断，重试 {attempt + 1}/{max_retries}"
+                    f"（max_tokens→{cur_max_tokens}）",
+                    file=sys.stderr,
+                )
+                continue
+
+            last_raw = raw
+            try:
+                return _extract_json_block(raw), raw
+            except (json.JSONDecodeError, ValueError) as exc:
+                last_err = exc
+                print(
+                    f"[LLMClient.chat_json] JSON 解析失败，重试 {attempt + 1}/{max_retries}",
+                    file=sys.stderr,
+                )
+                continue
+
+        raise LLMJSONError(
+            f"[LLMClient.chat_json] 穷尽 {max_retries} 次重试仍无法解析 JSON。\n"
+            f"  最后原因: {type(last_err).__name__}: {last_err}\n"
+            f"  原始输出（前 400 字）: {last_raw[:400]!r}"
+        )
 
     def _anthropic_chat(
         self,
@@ -155,14 +320,26 @@ class LLMClient:
             messages=all_messages,
         )
         text = response.choices[0].message.content
+        if text is None:
+            raise LLMTruncationError(
+                "[LLMClient] OpenAI 兼容接口返回 content=None（无有效输出）"
+            )
         # 推理模型（DeepSeek-R1、MiniMax-M2.5 等）会将思考链包在 <think>...</think> 中。
         # 先处理正常闭合的情况（<think>...</think>answer），再处理未闭合（max_tokens 截断）
         if "<think>" in text:
             if "</think>" in text:
                 text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL).strip()
             else:
-                # think 块未闭合（token 耗尽），整段是推理链，无有效答案
-                text = ""
+                # think 块未闭合（max_tokens 耗尽）：不再静默吞为空串（违反禁止兜底），
+                # 显式抛出可恢复的截断错误，由 chat_json/上层增大 max_tokens 后重试。
+                raise LLMTruncationError(
+                    "[LLMClient] 推理模型 <think> 未闭合即耗尽 max_tokens，无有效输出。"
+                    "请增大 max_tokens 后重试。"
+                )
+        if not text.strip():
+            raise LLMTruncationError(
+                "[LLMClient] OpenAI 兼容接口返回空文本（疑似截断或无输出）"
+            )
         return text
 
 
